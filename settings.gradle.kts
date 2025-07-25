@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Bank Card Validator"
 include(":app")
- 
+include(":utility")
