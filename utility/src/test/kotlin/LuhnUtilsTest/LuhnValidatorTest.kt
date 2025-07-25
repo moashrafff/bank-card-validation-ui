@@ -1,3 +1,4 @@
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import utils.isLuhnValid
@@ -18,8 +19,8 @@ class LuhnValidatorTest {
 
     @Test
     fun `when card number is invalid, isLuhnValid should returns false`() {
-        val cardNumber = "5555 5555 5555 4444"
-        assertTrue(isLuhnValid(cardNumber))
+        val cardNumber = "1234 5678 9012 3456"
+        assertFalse(isLuhnValid(cardNumber))
     }
 
     @Test
