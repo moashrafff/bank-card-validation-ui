@@ -24,6 +24,7 @@ object CardBrandDetector {
      * Returns true if the card number matches a known card brand pattern.
      */
     fun isSupportedCard(cardNumber: String): Boolean {
+        if (!cardNumber.all { it.isDigit() || it.isWhitespace() }) return false
         return CardBrandRules.getRule(cardNumber) != null
     }
 }

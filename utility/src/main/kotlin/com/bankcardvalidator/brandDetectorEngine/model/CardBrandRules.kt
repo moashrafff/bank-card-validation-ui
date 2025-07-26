@@ -48,21 +48,18 @@ internal object CardBrandRules {
         )
     )
 
-    internal fun detect(cardNumber: String): CardType? {
-        val clean = cardNumber.filter { it.isDigit() }
-        return cardTypeRules.firstOrNull {
-            clean.length <= it.validLengths.max() && it.pattern.matches(clean)
-        }?.type
-    }
+    internal fun detect(cardNumber: String): CardType? =
+        getRule(cardNumber = cardNumber)?.type
+
 
     internal fun getRule(cardNumber: String): CardTypeRule? {
         val clean = cardNumber.filter { it.isDigit() }
         return cardTypeRules.firstOrNull {
-            clean.length <= it.validLengths.max() && it.pattern.matches(clean)
+            it.validLengths.contains(clean.length) && it.pattern.matches(clean)
         }
     }
 
-    internal fun getCvvLength(cardNumber: String): Int? {
-        return getRule(cardNumber)?.cvvLength
-    }
+    internal fun getCvvLength(cardNumber: String): Int? =
+        getRule(cardNumber)?.cvvLength
+
 }
