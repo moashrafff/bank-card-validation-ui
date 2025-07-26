@@ -1,7 +1,9 @@
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_CARD
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_NON_DIGITS
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_MASTERCARD
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_VISA
+package com.bankcardvalidator.luhnUtilsTest
+
+import com.bankcardvalidator.testUtils.CardTestConstants.INVALID_CARD
+import com.bankcardvalidator.testUtils.CardTestConstants.INVALID_NON_DIGITS
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_MASTERCARD
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_VISA
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

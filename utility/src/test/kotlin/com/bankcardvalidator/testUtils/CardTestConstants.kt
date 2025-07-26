@@ -1,6 +1,6 @@
-package com.bankcardvalidator.LuhnUtilsTest
+package com.bankcardvalidator.testUtils
 
-internal object TestCardNumbers {
+internal object CardTestConstants {
     const val VALID_VISA="4539 1488 0343 6467"
     const val VALID_MASTERCARD="5555 5555 5555 4444"
     const val VALID_AMEX = "3782 822463 10005"
@@ -12,4 +12,10 @@ internal object TestCardNumbers {
     const val INVALID_NON_DIGITS="4539-1488-0343-6467"
     const val INVALID_SHORT = "4111 1111"
     const val INVALID_TOO_LONG = "4111 1111 1111 1111 9999"
+    const val THREE_DIGIT_CVV="123"
+    const val FOUR_DIGIT_CVV="1234"
+    const val INVALID_LENGTH_WITH_VALID_LUHN="4539 1488 0343 646"
+    const val VALID_LENGTH_MASTERCARD_WITH_INVALID_LUHN="5555 5555 5555 4440"
+    const val VALID_CARD_NUMBER_WITH_DASHES_AND_SPACES="4539-1488 0343-6467"
+    const val LETTERS="abcd efgh ijkl mnop"
 }

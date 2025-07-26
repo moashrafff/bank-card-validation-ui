@@ -1,16 +1,16 @@
 package com.bankcardvalidator.cardDetectorTests
 
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_CARD
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_NON_DIGITS
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_SHORT
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_TOO_LONG
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_AMEX
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_DINERS
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_DISCOVER
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_JCB
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_MASTERCARD
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_UNIONPAY
-import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_VISA
+import com.bankcardvalidator.testUtils.CardTestConstants.INVALID_CARD
+import com.bankcardvalidator.testUtils.CardTestConstants.INVALID_NON_DIGITS
+import com.bankcardvalidator.testUtils.CardTestConstants.INVALID_SHORT
+import com.bankcardvalidator.testUtils.CardTestConstants.INVALID_TOO_LONG
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_AMEX
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_DINERS
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_DISCOVER
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_JCB
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_MASTERCARD
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_UNIONPAY
+import com.bankcardvalidator.testUtils.CardTestConstants.VALID_VISA
 import com.bankcardvalidator.api.CardBrandDetector
 import com.bankcardvalidator.enums.CardType
 import org.junit.Assert.assertEquals
