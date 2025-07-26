@@ -1,6 +1,6 @@
-package utils
+package com.bankcardvalidator.typoValidationEngine
 
-fun isLuhnValid(cardNumber: String): Boolean {
+internal fun isLuhnValid(cardNumber: String): Boolean {
     val reversedNumber = cardNumber.filter { it.isDigit() }.reversed()
     val totalSum = reversedNumber.mapIndexed { index, digit ->
         val value = digit.digitToInt() * (if (index % 2 == 0) 1 else 2)

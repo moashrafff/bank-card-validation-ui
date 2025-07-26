@@ -1,11 +1,11 @@
-import LuhnUtilsTest.TestCardNumbers.INVALID_CARD
-import LuhnUtilsTest.TestCardNumbers.INVALID_NON_DIGITS
-import LuhnUtilsTest.TestCardNumbers.VALID_MASTERCARD
-import LuhnUtilsTest.TestCardNumbers.VALID_VISA
+import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_CARD
+import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.INVALID_NON_DIGITS
+import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_MASTERCARD
+import com.bankcardvalidator.LuhnUtilsTest.TestCardNumbers.VALID_VISA
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import utils.isLuhnValid
+import com.bankcardvalidator.typoValidationEngine.isLuhnValid
 
 class LuhnValidatorTest {
 
