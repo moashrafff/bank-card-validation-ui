@@ -1,6 +1,6 @@
-package enums
+package com.bankcardvalidator.enums
 
-enum class CardTypes {
+enum class CardType {
     VISA,
     MASTERCARD,
     AMERICAN_EXPRESS,
