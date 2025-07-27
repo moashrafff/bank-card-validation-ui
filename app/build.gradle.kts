@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":utility"))
+    implementation(project(":cardValidationEngine"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
