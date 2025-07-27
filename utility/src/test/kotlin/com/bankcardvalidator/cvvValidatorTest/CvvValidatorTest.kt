@@ -53,7 +53,7 @@ class CvvValidatorTest {
         assertFalse(isCvvValid(VALID_VISA, "12"))
     }
     @Test
-    fun `given a valid Mastercard with alphabetic ignored CVV when validated then return false`() {
+    fun `given a valid Mastercard with alphabetic ignored CVV when validated then return true`() {
         assertTrue(isCvvValid(VALID_MASTERCARD, "12A4"))
     }
 
