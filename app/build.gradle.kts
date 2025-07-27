@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.moashraf.bankcardvalidator"
+    namespace = "com.bankcardvalidator.bankcardvalidator"
     compileSdk = 36
 
     defaultConfig {

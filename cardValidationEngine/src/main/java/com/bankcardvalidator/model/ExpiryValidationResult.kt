@@ -1,4 +1,4 @@
-package com.moashraf.cardvalidationengine.model
+package com.bankcardvalidator.model
 
 sealed class ExpiryValidationResult {
     object Valid : ExpiryValidationResult()

@@ -1,8 +1,8 @@
-package com.moashraf.cardvalidationengine
+package com.bankcardvalidator.cardvalidationengine
 
 
-import com.moashraf.cardvalidationengine.api.ExpiryDateValidator
-import com.moashraf.cardvalidationengine.model.ExpiryValidationResult
+import com.bankcardvalidator.api.ExpiryDateValidator
+import com.bankcardvalidator.model.ExpiryValidationResult
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

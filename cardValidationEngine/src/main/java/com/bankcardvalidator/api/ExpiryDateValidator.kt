@@ -1,6 +1,6 @@
-package com.moashraf.cardvalidationengine.api
+package com.bankcardvalidator.api
 
-import com.moashraf.cardvalidationengine.model.ExpiryValidationResult
+import com.bankcardvalidator.model.ExpiryValidationResult
 import java.util.Calendar
 
 object ExpiryDateValidator {
