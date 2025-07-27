@@ -2,14 +2,18 @@ package com.bankcardvalidator.api
 
 import com.bankcardvalidator.cardNumberValidationEngine.isCardNumberValid
 import com.bankcardvalidator.cardNumberValidationEngine.result.CardNumberValidationResult
-import com.bankcardvalidator.typoValidationEngine.isCvvValid
+import com.bankcardvalidator.cvvValidationEngine.isCvvValid
+import com.bankcardvalidator.cvvValidationEngine.result.CvvValidationResult
 
 object CardTypoDetector {
     /**
-     * Validates the CVV based on the detected card brand rules.
-     * Returns true if the CVV is the correct length and format for the given card number.
+     * Validates the CVV for the given card number.
+     *
+     * - Returns [CvvValidationResult.InvalidFormat] if the CVV contains non-digit characters.
+     * - Returns [CvvValidationResult.InvalidLength] if the CVV length is incorrect.
+     * - Returns [CvvValidationResult.Valid] if the CVV is in the correct format and length for the detected card brand.
      */
-    fun isValidCvv(cardNumber: String, cvv: String): Boolean =
+    fun isValidCvv(cardNumber: String, cvv: String): CvvValidationResult =
         isCvvValid(cardNumber = cardNumber, cvv = cvv)
 
     /**

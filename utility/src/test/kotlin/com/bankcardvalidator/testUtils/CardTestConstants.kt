@@ -24,6 +24,9 @@ internal object CardTestConstants {
     const val INVALID_TOO_LONG_WITHOUT_SPACES = "41111111111111119999"
     const val THREE_DIGIT_CVV="123"
     const val FOUR_DIGIT_CVV="1234"
+    const val TWO_DIGIT_CVV="12"
+    const val THREE_DIGIT_CVV_WITH_CHAR="12A4"
+    const val THREE_DIGIT_CVV_WITH_SPACES="1 2 3"
     const val EMPTY_STRING=""
     const val SPACES_ONLY="    "
 }
