@@ -5,13 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
-
 import com.bankcardvalidator.api.CardBrandDetector
 import com.bankcardvalidator.api.CardValidator
+import com.bankcardvalidator.ui.components.CardNumberTextField
 
-
-import com.bankcardvalidator.ui.ReusableInputField
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +28,7 @@ class MainActivity : ComponentActivity() {
 
             }
 
-            ReusableInputField(
-                modifier = Modifier,
-                label = "Enter text"
-            )
+            CardNumberTextField()
         }
     }
 }
