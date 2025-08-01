@@ -1,4 +1,4 @@
-package com.moashraf.bankcardvalidator.ui.theme
+package com.bankcardvalidator.bankcardvalidator.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

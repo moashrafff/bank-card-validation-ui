@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.moashraf.bankcardvalidator"
+    namespace = "com.bankcardvalidator.bankcardvalidator"
     compileSdk = 36
 
     defaultConfig {
@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":utility"))
+    implementation(project(":cardValidationEngine"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
