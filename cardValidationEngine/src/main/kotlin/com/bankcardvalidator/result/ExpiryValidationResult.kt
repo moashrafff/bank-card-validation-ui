@@ -1,4 +1,4 @@
-package com.bankcardvalidator.model
+package com.bankcardvalidator.result
 
 sealed class ExpiryValidationResult {
     object Valid : ExpiryValidationResult()
