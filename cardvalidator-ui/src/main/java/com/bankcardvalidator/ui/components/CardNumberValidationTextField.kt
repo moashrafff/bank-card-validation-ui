@@ -16,17 +16,17 @@ import com.bankcardvalidator.ui.inputTypes.InputFieldValue
 fun CardNumberTextField() {
     var input by remember { mutableStateOf(InputFieldValue.WithSelection(TextFieldValue(""))) }
 
-    val rawDigits = input.value.text.filter { it.isDigit() }.take(19)
+    val cardNumberDigitsOnly = input.value.text.filter { it.isDigit() }.take(19)
 
-    val formatted = rawDigits.chunked(4).joinToString(" ")
+    val formattedCardNumber = cardNumberDigitsOnly.chunked(4).joinToString(" ")
 
     val newSelection = calculateNewSelection(
         oldValue = input.value,
-        rawDigits = rawDigits,
-        formatted = formatted
+        rawDigits = cardNumberDigitsOnly,
+        formatted = formattedCardNumber
     )
 
-    val validationResult = if (rawDigits.isEmpty()) null else isCardNumberValid(rawDigits)
+    val validationResult = if (cardNumberDigitsOnly.isEmpty()) null else isCardNumberValid(cardNumberDigitsOnly)
     val isError = validationResult != null && validationResult != CardNumberValidationResult.Valid
 
     val errorMessage = when (validationResult) {
@@ -38,7 +38,7 @@ fun CardNumberTextField() {
 
     ReusableInputField(
         label = "Card Number",
-        value = InputFieldValue.WithSelection(TextFieldValue(formatted, newSelection)),
+        value = InputFieldValue.WithSelection(TextFieldValue(formattedCardNumber, newSelection)),
         onValueChange = { input = it as InputFieldValue.WithSelection },
         isError = isError,
         errorMessage = errorMessage
