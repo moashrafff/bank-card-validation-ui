@@ -1,3 +1,6 @@
+import org.gradle.kotlin.dsl.flatDir
+import org.gradle.kotlin.dsl.repositories
+
 pluginManagement {
     repositories {
         google {
@@ -9,6 +12,10 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        flatDir {
+            dirs("libs")
+        }
+
     }
 }
 dependencyResolutionManagement {
@@ -22,3 +29,4 @@ dependencyResolutionManagement {
 rootProject.name = "Bank Card Validator"
 include(":app")
 include(":cardvalidationengine")
+include(":cardvalidator-ui")
