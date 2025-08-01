@@ -7,8 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
 
 import com.bankcardvalidator.api.CardBrandDetector
-import com.bankcardvalidator.api.CardTypoDetector
-import com.bankcardvalidator.api.ExpiryDateValidator
+import com.bankcardvalidator.api.CardValidator
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,9 +16,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             LaunchedEffect(Unit) {
                 val cardNumber = "123"
-                CardTypoDetector.isValidCard(cardNumber = cardNumber)
+
+                CardValidator.isCardNumberValid(cardNumber = cardNumber)
+                CardValidator.isExpiryDateValid(expiryDate = "12/25")
+                CardValidator.isCvvValid(cardNumber = cardNumber, cvv = "123")
+
                 CardBrandDetector.detectCardType(cardNumber = cardNumber)
-                ExpiryDateValidator.validate("12/25")
+                CardBrandDetector.isSupportedCard(cardNumber = cardNumber)
+                CardBrandDetector.getRequiredCvvLength(cardNumber = cardNumber)
+
             }
         }
     }

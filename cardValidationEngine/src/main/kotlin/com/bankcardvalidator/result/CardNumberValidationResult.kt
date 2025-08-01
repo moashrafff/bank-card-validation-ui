@@ -1,4 +1,4 @@
-package com.bankcardvalidator.cardNumberValidationEngine.result
+package com.bankcardvalidator.result
 
 sealed class CardNumberValidationResult {
     data object Valid : CardNumberValidationResult()

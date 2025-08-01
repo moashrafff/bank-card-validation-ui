@@ -1,6 +1,6 @@
 package com.bankcardvalidator.cvvValidatorTest
 
-import com.bankcardvalidator.api.CardTypoDetector.isValidCvv
+import com.bankcardvalidator.api.CardValidator.isCvvValid
 import com.bankcardvalidator.cvvValidationEngine.result.CvvValidationResult
 import com.bankcardvalidator.testUtils.CardTestConstants.EMPTY_STRING
 import com.bankcardvalidator.testUtils.CardTestConstants.FOUR_DIGIT_CVV
@@ -22,67 +22,67 @@ import org.junit.Test
 class CvvValidatorTest {
     @Test
     fun `given a valid Visa with 3-digit cvv then return Valid`() {
-        assertEquals(CvvValidationResult.Valid, isValidCvv(VALID_VISA, THREE_DIGIT_CVV))
+        assertEquals(CvvValidationResult.Valid, isCvvValid(VALID_VISA, THREE_DIGIT_CVV))
     }
 
     @Test
     fun `given a valid Amex with 4-digit cvv then return Valid`() {
-        assertEquals(CvvValidationResult.Valid, isValidCvv(VALID_AMEX, FOUR_DIGIT_CVV))
+        assertEquals(CvvValidationResult.Valid, isCvvValid(VALID_AMEX, FOUR_DIGIT_CVV))
     }
 
     @Test
     fun `given a valid JCB with 3-digit cvv then return Valid`() {
-        assertEquals(CvvValidationResult.Valid, isValidCvv(VALID_JCB, THREE_DIGIT_CVV))
+        assertEquals(CvvValidationResult.Valid, isCvvValid(VALID_JCB, THREE_DIGIT_CVV))
     }
 
     @Test
     fun `given a valid Mastercard with 3-digit cvv then return Valid`() {
-        assertEquals(CvvValidationResult.Valid, isValidCvv(VALID_MASTERCARD, THREE_DIGIT_CVV))
+        assertEquals(CvvValidationResult.Valid, isCvvValid(VALID_MASTERCARD, THREE_DIGIT_CVV))
     }
 
     @Test
     fun `given a valid Diners with 3-digit cvv then return Valid`() {
-        assertEquals(CvvValidationResult.Valid, isValidCvv(VALID_DINERS, THREE_DIGIT_CVV))
+        assertEquals(CvvValidationResult.Valid, isCvvValid(VALID_DINERS, THREE_DIGIT_CVV))
     }
 
     @Test
     fun `given a valid UnionPay with 3-digit cvv then return Valid`() {
-        assertEquals(CvvValidationResult.Valid, isValidCvv(VALID_UNIONPAY, THREE_DIGIT_CVV))
+        assertEquals(CvvValidationResult.Valid, isCvvValid(VALID_UNIONPAY, THREE_DIGIT_CVV))
     }
 
     @Test
     fun `given a valid Discover with 3-digit cvv then return Valid`() {
-        assertEquals(CvvValidationResult.Valid, isValidCvv(VALID_DISCOVER, THREE_DIGIT_CVV))
+        assertEquals(CvvValidationResult.Valid, isCvvValid(VALID_DISCOVER, THREE_DIGIT_CVV))
     }
 
     @Test
     fun `given a Mastercard with 4-digit cvv then return InvalidLength`() {
-        assertEquals(CvvValidationResult.InvalidLength, isValidCvv(VALID_MASTERCARD, FOUR_DIGIT_CVV))
+        assertEquals(CvvValidationResult.InvalidLength, isCvvValid(VALID_MASTERCARD, FOUR_DIGIT_CVV))
     }
 
     @Test
     fun `given a Visa with 2-digit cvv then return InvalidLength`() {
-        assertEquals(CvvValidationResult.InvalidLength, isValidCvv(VALID_VISA, TWO_DIGIT_CVV))
+        assertEquals(CvvValidationResult.InvalidLength, isCvvValid(VALID_VISA, TWO_DIGIT_CVV))
     }
 
     @Test
     fun `given a Mastercard with alphabetic characters in cvv then return InvalidFormat`() {
-        assertEquals(CvvValidationResult.InvalidFormat, isValidCvv(VALID_MASTERCARD, THREE_DIGIT_CVV_WITH_CHAR))
+        assertEquals(CvvValidationResult.InvalidFormat, isCvvValid(VALID_MASTERCARD, THREE_DIGIT_CVV_WITH_CHAR))
     }
 
     @Test
     fun `given an invalid card number then return InvalidLength`() {
-        assertEquals(CvvValidationResult.InvalidLength, isValidCvv(INVALID_TOO_LONG, FOUR_DIGIT_CVV))
+        assertEquals(CvvValidationResult.InvalidLength, isCvvValid(INVALID_TOO_LONG, FOUR_DIGIT_CVV))
     }
 
     @Test
     fun `given a valid card with empty cvv then return InvalidLength`() {
-        assertEquals(CvvValidationResult.InvalidLength, isValidCvv(VALID_VISA, EMPTY_STRING))
+        assertEquals(CvvValidationResult.InvalidLength, isCvvValid(VALID_VISA, EMPTY_STRING))
     }
 
     @Test
     fun `given a valid card with cvv containing spaces then return InvalidFormat`() {
-        assertEquals(CvvValidationResult.InvalidFormat, isValidCvv(VALID_VISA, THREE_DIGIT_CVV_WITH_SPACES))
+        assertEquals(CvvValidationResult.InvalidFormat, isCvvValid(VALID_VISA, THREE_DIGIT_CVV_WITH_SPACES))
     }
 
 }
