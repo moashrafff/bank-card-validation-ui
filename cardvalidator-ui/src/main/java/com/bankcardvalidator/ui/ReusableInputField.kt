@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ReusableInputField(
     modifier: Modifier = Modifier,
-    label: String = "Enter text"
+    label: String
 ) {
     var text by remember { mutableStateOf("") }
 
