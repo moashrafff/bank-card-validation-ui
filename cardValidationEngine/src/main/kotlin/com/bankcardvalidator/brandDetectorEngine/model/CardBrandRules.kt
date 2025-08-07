@@ -59,6 +59,13 @@ internal object CardBrandRules {
         }
     }
 
+    internal fun detectCardBrand(cardNumber: String): CardTypeRule? {
+        val clean = cardNumber.filter { it.isDigit() }
+        return cardTypeRules.firstOrNull {
+             it.pattern.matches(clean)
+        }
+    }
+
     internal fun getCvvLength(cardNumber: String): Int? =
         getRule(cardNumber)?.cvvLength
 

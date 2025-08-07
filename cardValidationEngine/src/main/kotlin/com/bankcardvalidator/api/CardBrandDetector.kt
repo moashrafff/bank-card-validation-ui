@@ -30,9 +30,9 @@ object CardBrandDetector {
     }
 
     /**
-     * Returns the card brand rule for the card number, if known.
+     * Detects the card brand (Visa, Mastercard, etc.) based on card number.
      */
-    fun getCardBrandRule(cardNumber: String): CardTypeRule? {
-        return CardBrandRules.getRule(cardNumber)
+    fun detectCardBrand(cardNumber: String): CardTypeRule? {
+        return CardBrandRules.detectCardBrand(cardNumber)
     }
 }

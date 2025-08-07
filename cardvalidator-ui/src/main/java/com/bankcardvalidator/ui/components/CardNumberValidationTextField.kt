@@ -3,18 +3,15 @@ package com.bankcardvalidator.ui.components
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bankcardvalidator.api.CardBrandDetector
-import com.bankcardvalidator.api.CardValidator.isCardNumberValid
-import com.bankcardvalidator.result.CardNumberValidationResult
 import com.bankcardvalidator.ui.common.CardBrandIcon
 import com.bankcardvalidator.ui.common.ReusableInputField
 import com.bankcardvalidator.ui.inputTypes.InputFieldValue
-import com.bankcardvalidator.ui.inputUtils.calculateNewSelection
+import com.bankcardvalidator.ui.inputUtils.InputFieldValueWithSelectionSaver
+import com.bankcardvalidator.ui.state.rememberCardInputState
 
 @Composable
 fun CardNumberTextField(
@@ -24,57 +21,33 @@ fun CardNumberTextField(
     unknownCardBrandErrorMessage: String = "Unknown card brand",
     textFieldLabel: String = "Card Number"
 ) {
-    var input by remember { mutableStateOf(InputFieldValue.WithSelection(TextFieldValue(""))) }
-
-    val cardNumberDigitsOnly = input.value.text.filter { it.isDigit() }
-
-    val cardRule = remember(cardNumberDigitsOnly) {
-        CardBrandDetector.getCardBrandRule(cardNumberDigitsOnly)
+    var input by rememberSaveable(stateSaver = InputFieldValueWithSelectionSaver) {
+        mutableStateOf(
+            InputFieldValue.WithSelection(TextFieldValue(""))
+        )
     }
-    val cardBrand = cardRule?.type
-    val maxLength = cardRule?.validLengths?.maxOrNull() ?: 19
-
-    val limitedCardNumberDigits = cardNumberDigitsOnly.take(maxLength)
-    val formattedCardNumber = limitedCardNumberDigits.chunked(4).joinToString(" ")
-
-    val newSelection = calculateNewSelection(
-        oldValue = input.value,
-        rawDigits = limitedCardNumberDigits,
-        formatted = formattedCardNumber
+    val inputState = rememberCardInputState(
+        input = input,
+        invalidFormatErrorMessage = invalidFormatErrorMessage,
+        invalidCardNumberErrorMessage = invalidCardNumberErrorMessage,
+        unknownCardBrandErrorMessage = unknownCardBrandErrorMessage
     )
-
-    val validationResult =
-        if (limitedCardNumberDigits.isEmpty()) null else isCardNumberValid(limitedCardNumberDigits)
-    val isError = validationResult != null && validationResult != CardNumberValidationResult.Valid
-
-    val errorMessage = when (validationResult) {
-        CardNumberValidationResult.InvalidFormat -> invalidFormatErrorMessage
-        CardNumberValidationResult.InvalidLuhn -> invalidCardNumberErrorMessage
-        CardNumberValidationResult.UnknownCardBrand -> unknownCardBrandErrorMessage
-        CardNumberValidationResult.Valid -> null
-        null -> null
-    }
 
     ReusableInputField(
         label = textFieldLabel,
-        value = InputFieldValue.WithSelection(TextFieldValue(formattedCardNumber, newSelection)),
+        value = InputFieldValue.WithSelection(inputState.newSelection),
         onValueChange = {
             val newInput = it as InputFieldValue.WithSelection
             val digitsOnly = newInput.value.text.filter { ch -> ch.isDigit() }
-            if (digitsOnly.length <= maxLength) {
+            if (digitsOnly.length <= inputState.maxLength) {
                 input = newInput
             }
         },
-        isError = isError,
-        errorMessage = errorMessage,
+        isError = inputState.isError,
+        errorMessage = inputState.errorMessage,
         keyboardOptions = keyboardOptions,
-        cardBrandIcon = {
-            key(cardBrand) {
-                CardBrandIcon(cardBrand)
-            }
-        }
+        cardBrandIcon =
+            { CardBrandIcon(inputState.cardBrand) }
     )
 
 }
-
-
