@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.bankcardvalidator.ui"
+    namespace = "com.bankcardvalidatorui"
     compileSdk = 36
 
     defaultConfig {

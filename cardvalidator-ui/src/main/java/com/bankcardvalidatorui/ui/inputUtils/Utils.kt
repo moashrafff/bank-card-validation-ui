@@ -1,8 +1,8 @@
-package com.bankcardvalidator.ui.inputUtils
+package com.bankcardvalidatorui.ui.inputUtils
 
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bankcardvalidator.ui.inputTypes.InputFieldValue
+import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 
 fun InputFieldValue.toTextFieldValue(): TextFieldValue = when (this) {
     is InputFieldValue.Plain -> TextFieldValue(this.text)

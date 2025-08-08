@@ -11,8 +11,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/cardValidationEngine" />
-            <option value="$PROJECT_DIR$/utility" />
+            <option value="$PROJECT_DIR$/cardvalidationengine" />
+            <option value="$PROJECT_DIR$/cardvalidator-ui" />
           </set>
         </option>
       </GradleProjectSettings>

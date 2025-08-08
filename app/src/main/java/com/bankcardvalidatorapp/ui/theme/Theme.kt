@@ -1,4 +1,4 @@
-package com.bankcardvalidator.bankcardvalidator.ui.theme
+package com.bankcardvalidatorui.bankcardvalidator.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

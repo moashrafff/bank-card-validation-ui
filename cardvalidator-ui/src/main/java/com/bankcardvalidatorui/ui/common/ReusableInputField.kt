@@ -1,4 +1,5 @@
-package com.bankcardvalidator.ui.common
+package com.bankcardvalidatorui.ui.common
+
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,11 +17,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bankcardvalidatorui.R
 import com.bankcardvalidator.enums.CardType
-import com.bankcardvalidator.ui.R
-import com.bankcardvalidator.ui.inputTypes.InputFieldValue
-import com.bankcardvalidator.ui.inputUtils.toTextFieldValue
-import com.bankcardvalidator.ui.inputUtils.updateWith
+import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
+import com.bankcardvalidatorui.ui.inputUtils.toTextFieldValue
+import com.bankcardvalidatorui.ui.inputUtils.updateWith
 
 @Composable
 fun ReusableInputField(

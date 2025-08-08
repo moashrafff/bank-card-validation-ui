@@ -1,9 +1,9 @@
-package com.bankcardvalidator.ui
+package com.bankcardvalidatorui.ui
 
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bankcardvalidator.ui.inputTypes.InputFieldValue
-import com.bankcardvalidator.ui.inputUtils.updateWith
+import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
+import com.bankcardvalidatorui.ui.inputUtils.updateWith
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

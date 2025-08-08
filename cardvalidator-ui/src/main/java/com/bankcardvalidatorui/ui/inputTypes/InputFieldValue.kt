@@ -1,4 +1,4 @@
-package com.bankcardvalidator.ui.inputTypes
+package com.bankcardvalidatorui.ui.inputTypes
 
 import androidx.compose.ui.text.input.TextFieldValue
 

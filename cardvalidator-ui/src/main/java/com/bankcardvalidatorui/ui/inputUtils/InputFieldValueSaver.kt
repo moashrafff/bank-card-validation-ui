@@ -1,10 +1,10 @@
-package com.bankcardvalidator.ui.inputUtils
+package com.bankcardvalidatorui.ui.inputUtils
 
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bankcardvalidator.ui.inputTypes.InputFieldValue
+import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 
 val InputFieldValueWithSelectionSaver: Saver<InputFieldValue.WithSelection, *> = listSaver(
     save = {

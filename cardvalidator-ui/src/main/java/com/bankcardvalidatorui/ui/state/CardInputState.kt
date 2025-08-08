@@ -1,16 +1,16 @@
-package com.bankcardvalidator.ui.state
+package com.bankcardvalidatorui.ui.state
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bankcardvalidator.ui.inputTypes.InputFieldValue
-import com.bankcardvalidator.ui.inputUtils.calculateNewSelection
 import com.bankcardvalidator.brandDetectorEngine.model.CardTypeRule
 import com.bankcardvalidator.api.CardBrandDetector.detectCardBrand
 import com.bankcardvalidator.api.CardValidator.isCardNumberValid
 import com.bankcardvalidator.result.CardNumberValidationResult
+import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
+import com.bankcardvalidatorui.ui.inputUtils.calculateNewSelection
 
 @Composable
 internal fun rememberCardInputState(

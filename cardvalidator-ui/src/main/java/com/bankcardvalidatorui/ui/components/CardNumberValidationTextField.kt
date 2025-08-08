@@ -1,4 +1,4 @@
-package com.bankcardvalidator.ui.components
+package com.bankcardvalidatorui.ui.components
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
@@ -7,11 +7,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.TextFieldValue
-import com.bankcardvalidator.ui.common.CardBrandIcon
-import com.bankcardvalidator.ui.common.ReusableInputField
-import com.bankcardvalidator.ui.inputTypes.InputFieldValue
-import com.bankcardvalidator.ui.inputUtils.InputFieldValueWithSelectionSaver
-import com.bankcardvalidator.ui.state.rememberCardInputState
+import com.bankcardvalidatorui.ui.common.CardBrandIcon
+import com.bankcardvalidatorui.ui.common.ReusableInputField
+import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
+import com.bankcardvalidatorui.ui.inputUtils.InputFieldValueWithSelectionSaver
+import com.bankcardvalidatorui.ui.state.rememberCardInputState
 
 @Composable
 fun CardNumberTextField(

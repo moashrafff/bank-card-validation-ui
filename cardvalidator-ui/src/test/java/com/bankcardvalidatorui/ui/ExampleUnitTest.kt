@@ -1,4 +1,4 @@
-package com.bankcardvalidator.ui
+package com.bankcardvalidatorui.ui
 
 import org.junit.Test
 

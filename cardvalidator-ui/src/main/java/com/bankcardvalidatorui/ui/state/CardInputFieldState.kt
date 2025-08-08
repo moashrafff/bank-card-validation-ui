@@ -1,4 +1,4 @@
-package com.bankcardvalidator.ui.state
+package com.bankcardvalidatorui.ui.state
 
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bankcardvalidator.enums.CardType

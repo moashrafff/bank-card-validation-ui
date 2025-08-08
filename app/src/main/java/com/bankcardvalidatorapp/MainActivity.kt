@@ -1,4 +1,4 @@
-package com.bankcardvalidator.bankcardvalidator
+package com.bankcardvalidatorapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,9 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.text.input.KeyboardType
-//import com.bankcardvalidator.api.CardBrandDetector
-//import com.bankcardvalidator.api.CardValidator
-import com.bankcardvalidator.ui.components.CardNumberTextField
+
+import com.bankcardvalidator.api.CardBrandDetector
+import com.bankcardvalidator.api.CardValidator
+
+import com.bankcardvalidatorui.ui.components.CardNumberTextField
 
 
 class MainActivity : ComponentActivity() {
@@ -20,13 +22,13 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(Unit) {
                 val cardNumber = "4539148803436467"
 
-//                CardValidator.isCardNumberValid(cardNumber = cardNumber)
-//                CardValidator.isExpiryDateValid(expiryDate = "12/25")
-//                CardValidator.isCvvValid(cardNumber = cardNumber, cvv = "123")
-//
-//                CardBrandDetector.detectCardType(cardNumber = cardNumber)
-//                CardBrandDetector.isSupportedCard(cardNumber = cardNumber)
-//                CardBrandDetector.getRequiredCvvLength(cardNumber = cardNumber)
+                CardValidator.isCardNumberValid(cardNumber = cardNumber)
+                CardValidator.isExpiryDateValid(expiryDate = "12/25")
+                CardValidator.isCvvValid(cardNumber = cardNumber, cvv = "123")
+
+                CardBrandDetector.detectCardType(cardNumber = cardNumber)
+                CardBrandDetector.isSupportedCard(cardNumber = cardNumber)
+                CardBrandDetector.getRequiredCvvLength(cardNumber = cardNumber)
 
             }
 
