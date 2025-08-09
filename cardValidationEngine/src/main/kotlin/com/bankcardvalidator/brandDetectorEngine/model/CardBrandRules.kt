@@ -66,7 +66,7 @@ internal object CardBrandRules {
         }
     }
 
-    internal fun getCvvLength(cardNumber: String): Int? =
-        getRule(cardNumber)?.cvvLength
+    internal fun getCvvLength(cardNumber: String?): Int? =
+        cardNumber?.let { getRule(it)?.cvvLength } ?: 3
 
 }

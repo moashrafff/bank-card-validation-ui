@@ -57,5 +57,6 @@ dependencies {
     // Optional: Tooling for preview/debug
     debugImplementation(libs.androidx.ui.tooling)
 
-    compileOnly(fileTree(mapOf("include" to listOf("*.jar", "*.aar"), "dir" to "libs")))
+//    compileOnly(fileTree(mapOf("include" to listOf("*.jar", "*.aar"), "dir" to "libs")))
+    compileOnly(project(":cardvalidationengine"))
 }

@@ -11,7 +11,7 @@ import com.bankcardvalidatorui.ui.common.CardBrandIcon
 import com.bankcardvalidatorui.ui.common.ReusableInputField
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.InputFieldValueWithSelectionSaver
-import com.bankcardvalidatorui.ui.state.rememberCardInputState
+import com.bankcardvalidatorui.ui.state.rememberCardNameState
 
 @Composable
 fun CardNumberTextField(
@@ -21,12 +21,12 @@ fun CardNumberTextField(
     unknownCardBrandErrorMessage: String = "Unknown card brand",
     textFieldLabel: String = "Card Number"
 ) {
-    var input by rememberSaveable(stateSaver = InputFieldValueWithSelectionSaver) {
+    var input by rememberSaveable(stateSaver = InputFieldValueWithSelectionSaver, init = {
         mutableStateOf(
             InputFieldValue.WithSelection(TextFieldValue(""))
         )
-    }
-    val inputState = rememberCardInputState(
+    })
+    val inputState = rememberCardNameState(
         input = input,
         invalidFormatErrorMessage = invalidFormatErrorMessage,
         invalidCardNumberErrorMessage = invalidCardNumberErrorMessage,
@@ -49,5 +49,4 @@ fun CardNumberTextField(
         cardBrandIcon =
             { CardBrandIcon(inputState.cardBrand) }
     )
-
 }

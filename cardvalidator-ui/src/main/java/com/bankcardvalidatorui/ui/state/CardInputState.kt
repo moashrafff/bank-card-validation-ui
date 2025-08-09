@@ -13,7 +13,7 @@ import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.calculateNewSelection
 
 @Composable
-internal fun rememberCardInputState(
+internal fun rememberCardNameState(
     input: InputFieldValue.WithSelection,
     invalidFormatErrorMessage: String,
     invalidCardNumberErrorMessage: String,
