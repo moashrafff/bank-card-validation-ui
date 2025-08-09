@@ -34,8 +34,7 @@ fun CardNumberTextField(
         mutableStateOf(
             InputFieldValue.WithSelection(TextFieldValue(""))
         )
-    }
-    )
+    })
 
     val focusManager = LocalFocusManager.current
     val inputState = rememberCardNumberInputState(
