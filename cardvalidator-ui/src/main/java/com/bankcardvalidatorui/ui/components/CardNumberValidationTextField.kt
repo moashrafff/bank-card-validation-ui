@@ -2,37 +2,62 @@ package com.bankcardvalidatorui.ui.components
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bankcardvalidatorui.ui.common.CardBrandIcon
 import com.bankcardvalidatorui.ui.common.ReusableInputField
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.InputFieldValueWithSelectionSaver
-import com.bankcardvalidatorui.ui.state.rememberCardInputState
+import com.bankcardvalidatorui.ui.state.rememberCardNumberInputState
 
 @Composable
 fun CardNumberTextField(
     keyboardOptions: KeyboardOptions,
     invalidFormatErrorMessage: String = "Card number must be digits only",
     invalidCardNumberErrorMessage: String = "Invalid card number",
-    unknownCardBrandErrorMessage: String = "Unknown card brand",
-    textFieldLabel: String = "Card Number"
+    unknownCardBrandErrorMessage: String = "Incomplete card number",
+    textFieldLabel: String = "Card Number",
+    onCardNumberChange: (String) -> Unit,
+    onCompleteFocusDirection: FocusDirection? = null,
+    clearIcon: Painter? = null,
+    errorMessageFontSize: Float = 12f,
+    onCardNumberValidChange: (Boolean) -> Unit
 ) {
     var input by rememberSaveable(stateSaver = InputFieldValueWithSelectionSaver) {
         mutableStateOf(
             InputFieldValue.WithSelection(TextFieldValue(""))
         )
     }
-    val inputState = rememberCardInputState(
+    val focusManager = LocalFocusManager.current
+    val inputState = rememberCardNumberInputState(
         input = input,
         invalidFormatErrorMessage = invalidFormatErrorMessage,
         invalidCardNumberErrorMessage = invalidCardNumberErrorMessage,
         unknownCardBrandErrorMessage = unknownCardBrandErrorMessage
     )
+    var wasValid by rememberSaveable { mutableStateOf(false) }
 
+    LaunchedEffect(inputState.isValidCardNumber) {
+
+        onCardNumberValidChange(inputState.isValidCardNumber)
+
+        if (!wasValid && inputState.isValidCardNumber) {
+            if (onCompleteFocusDirection != null) focusManager.moveFocus(
+                onCompleteFocusDirection
+            )
+            else {
+                focusManager.clearFocus()
+            }
+        }
+        wasValid = inputState.isValidCardNumber
+    }
     ReusableInputField(
         label = textFieldLabel,
         value = InputFieldValue.WithSelection(inputState.newSelection),
@@ -41,13 +66,21 @@ fun CardNumberTextField(
             val digitsOnly = newInput.value.text.filter { ch -> ch.isDigit() }
             if (digitsOnly.length <= inputState.maxLength) {
                 input = newInput
+                onCardNumberChange(digitsOnly)
             }
         },
         isError = inputState.isError,
         errorMessage = inputState.errorMessage,
         keyboardOptions = keyboardOptions,
         cardBrandIcon =
-            { CardBrandIcon(inputState.cardBrand) }
+            { CardBrandIcon(inputState.cardBrand) },
+        onClearCardNumberClick = {
+            input = InputFieldValue.WithSelection(TextFieldValue(""))
+            onCardNumberChange("")
+        },
+        clearIcon = clearIcon,
+        errorMessageFontSize = errorMessageFontSize
+
     )
 
 }

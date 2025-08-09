@@ -13,12 +13,12 @@ import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.calculateNewSelection
 
 @Composable
-internal fun rememberCardInputState(
+internal fun rememberCardNumberInputState(
     input: InputFieldValue.WithSelection,
     invalidFormatErrorMessage: String,
     invalidCardNumberErrorMessage: String,
     unknownCardBrandErrorMessage: String
-) : CardInputFieldState {
+) : CardNumberInputFieldState {
     val cardNumberDigitsOnly = input.value.text.filter { it.isDigit() }
 
     val cardRule : CardTypeRule? = remember(cardNumberDigitsOnly) {
@@ -58,13 +58,14 @@ internal fun rememberCardInputState(
     }
     val newTextFieldValue = TextFieldValue(formattedCardNumber, newSelection)
 
-    return CardInputFieldState(
+    return CardNumberInputFieldState(
         formattedCardNumber = formattedCardNumber,
         rawDigits = limitedCardNumberDigits,
         newSelection = newTextFieldValue,
         cardBrand = cardBrand,
         isError = isError,
         errorMessage = errorMessage,
-        maxLength = maxLength
+        maxLength = maxLength,
+        isValidCardNumber = validationResult == CardNumberValidationResult.Valid
     )
 }
