@@ -3,7 +3,7 @@ package com.bankcardvalidator.cvvValidationEngine
 import com.bankcardvalidator.brandDetectorEngine.model.CardBrandRules
 import com.bankcardvalidator.cvvValidationEngine.result.CvvValidationResult
 
-fun isCvvValid(cardNumber: String?, cvv: String): CvvValidationResult = when {
+internal fun isCvvValid(cardNumber: String?, cvv: String): CvvValidationResult = when {
     !cvv.all { it.isDigit() } -> CvvValidationResult.InvalidFormat
 
     else -> {
