@@ -6,15 +6,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bankcardvalidatorui.R
@@ -25,7 +30,7 @@ import com.bankcardvalidatorui.ui.inputUtils.updateWith
 @Composable
 fun ReusableInputField(
     modifier: Modifier = Modifier,
-    label: String = "Enter text",
+    label: String = stringResource(R.string.enter_text),
     value: InputFieldValue,
     onValueChange: (InputFieldValue) -> Unit,
     isError: Boolean = false,
@@ -34,7 +39,7 @@ fun ReusableInputField(
     cardBrandIcon: @Composable (() -> Unit)? = null,
     errorMessageFontSize: Float = 12f,
     onClearCardNumberClick: () -> Unit,
-    clearIcon:Painter? = null
+    clearIcon: ImageVector? = null
 ) {
     val textFieldValue = value.toTextFieldValue()
 
@@ -43,37 +48,41 @@ fun ReusableInputField(
             .fillMaxWidth()
             .padding(horizontal = 15.dp, vertical = 35.dp)
     ) {
-        OutlinedTextField(
-            value = textFieldValue,
-            onValueChange = { newValue ->
-                onValueChange(value.updateWith(newValue))
-            },
-            label = { Text(label) },
-            isError = isError,
-            singleLine = true,
-            keyboardOptions = keyboardOptions,
-            leadingIcon = cardBrandIcon,
-            trailingIcon = {
-                Icon(
-                    painter = clearIcon ?: painterResource(id = R.drawable.ic_cancel),
-                    contentDescription = "Error icon",
-                    tint = MaterialTheme.colorScheme.error,
-                    modifier = Modifier
-                        .size(24.dp)
-                        .clickable {
-                            onClearCardNumberClick()
-                        }
-                )
-            },
-            modifier = modifier.fillMaxWidth()
-        )
-        if (isError && !errorMessage.isNullOrBlank()) {
-            Text(
-                text = errorMessage,
-                color = MaterialTheme.colorScheme.error,
-                style = TextStyle(fontSize = errorMessageFontSize.sp),
-                modifier = modifier.padding(start = 16.dp, top = 4.dp)
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            OutlinedTextField(
+                value = textFieldValue,
+                onValueChange = { newValue ->
+                    onValueChange(value.updateWith(newValue))
+                },
+                label = { Text(label) },
+                isError = isError,
+                singleLine = true,
+                keyboardOptions = keyboardOptions,
+                leadingIcon = cardBrandIcon,
+                trailingIcon = {
+                    if (textFieldValue.text.isNotEmpty() || textFieldValue.text.isNotBlank()) {
+                        Icon(
+                            imageVector = clearIcon ?: Icons.Default.Clear,
+                            contentDescription = "Error icon",
+                            tint = MaterialTheme.colorScheme.error,
+                            modifier = Modifier
+                                .size(24.dp)
+                                .clickable {
+                                    onClearCardNumberClick()
+                                }
+                        )
+                    }
+                },
+                modifier = modifier.fillMaxWidth()
             )
+            if (isError && !errorMessage.isNullOrBlank()) {
+                Text(
+                    text = errorMessage,
+                    color = MaterialTheme.colorScheme.error,
+                    style = TextStyle(fontSize = errorMessageFontSize.sp),
+                    modifier = modifier.padding(start = 16.dp, top = 4.dp)
+                )
+            }
         }
     }
 }

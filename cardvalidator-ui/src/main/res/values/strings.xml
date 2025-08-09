@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_text">Enter text</string>
+    <string name="card_number_must_be_digits_only">Card number must be digits only</string>
+    <string name="invalid_card_number">Invalid card number</string>
+    <string name="incomplete_card_number">Incomplete card number</string>
+    <string name="card_number">Card Number</string>
+</resources>

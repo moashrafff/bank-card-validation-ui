@@ -1,11 +1,16 @@
 package com.bankcardvalidatorapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
 
 import com.bankcardvalidator.api.CardBrandDetector
@@ -32,10 +37,18 @@ class MainActivity : ComponentActivity() {
 
             }
 
-            CardNumberTextField(KeyboardOptions(keyboardType = KeyboardType.Number),
-                onCardNumberChange = {},
-                onCardNumberValidChange = {}
+            var cardNumberEntered by remember { mutableStateOf("") }
+            var isCardNumberValid by remember { mutableStateOf(false) }
+
+            CardNumberTextField(
+                KeyboardOptions(keyboardType = KeyboardType.Number),
+                onCardNumberChange = { updatedCardNumber ->
+                    cardNumberEntered = updatedCardNumber
+                },
+                onCardNumberValidChange = { valid -> isCardNumberValid = valid }
             )
+            Log.d("cardNum", cardNumberEntered)
+            Log.d("valid", isCardNumberValid.toString())
         }
     }
 }

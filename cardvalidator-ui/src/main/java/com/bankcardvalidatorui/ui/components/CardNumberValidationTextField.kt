@@ -8,9 +8,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import com.bankcardvalidatorui.R
 import com.bankcardvalidatorui.ui.common.CardBrandIcon
 import com.bankcardvalidatorui.ui.common.ReusableInputField
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
@@ -20,12 +22,12 @@ import com.bankcardvalidatorui.ui.state.rememberCardNumberInputState
 @Composable
 fun CardNumberTextField(
     keyboardOptions: KeyboardOptions,
-    invalidFormatErrorMessage: String = "Card number must be digits only",
-    invalidCardNumberErrorMessage: String = "Invalid card number",
-    unknownCardBrandErrorMessage: String = "Incomplete card number",
-    textFieldLabel: String = "Card Number",
+    invalidFormatErrorMessage: String = stringResource(R.string.card_number_must_be_digits_only),
+    invalidCardNumberErrorMessage: String = stringResource(R.string.invalid_card_number),
+    unknownCardBrandErrorMessage: String = stringResource(R.string.incomplete_card_number),
+    textFieldLabel: String = stringResource(R.string.card_number),
     onCompleteFocusDirection: FocusDirection? = null,
-    clearIcon: Painter? = null,
+    clearIcon: ImageVector? = null,
     errorMessageFontSize: Float = 12f,
     onCardNumberChange: (String) -> Unit,
     onCardNumberValidChange: (Boolean) -> Unit
