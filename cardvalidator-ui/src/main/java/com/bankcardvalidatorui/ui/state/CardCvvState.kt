@@ -19,8 +19,9 @@ internal fun rememberCardCvvState(
     val cardCvvDigitsOnly = cvvInput.value.text.filter { it.isDigit() }
     val cardNumberDigitsOnly = optionalCardNumber?.filter { it.isDigit() }
 
-    val isCvvValid : CvvValidationResult = remember(cardCvvDigitsOnly) {
-        CardValidator.isCvvValid(cvv = cardCvvDigitsOnly, cardNumber = optionalCardNumber)
+    val isCvvValid: CvvValidationResult = remember(cardCvvDigitsOnly, cardNumberDigitsOnly) {
+        if (cardCvvDigitsOnly.isEmpty()) CvvValidationResult.Valid
+        else CardValidator.isCvvValid(cvv = cardCvvDigitsOnly, cardNumber = cardNumberDigitsOnly)
     }
     val cardRule : CardTypeRule? = remember(cardNumberDigitsOnly) {
         detectCardBrand(cardNumberDigitsOnly.orEmpty())
@@ -34,13 +35,12 @@ internal fun rememberCardCvvState(
         CvvValidationResult.Valid -> null
     }
 
-    val isError = isCvvValid != CvvValidationResult.Valid
+    val isError = cardCvvDigitsOnly.isNotEmpty() && isCvvValid != CvvValidationResult.Valid
 
     return CardCvvInputFieldState(
-        cardBrand = null,
+        cardNumber = optionalCardNumber,
         isError = isError,
         errorMessage = cvvValidationMessage,
         maxLength = cardCvvMaxLength ?: 3
     )
-
 }

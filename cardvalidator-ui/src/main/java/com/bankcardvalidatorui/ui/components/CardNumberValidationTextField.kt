@@ -11,6 +11,7 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bankcardvalidatorui.R
 import com.bankcardvalidatorui.ui.common.CardBrandIcon
@@ -21,7 +22,6 @@ import com.bankcardvalidatorui.ui.state.rememberCardNumberInputState
 
 @Composable
 fun CardNumberTextField(
-    keyboardOptions: KeyboardOptions,
     invalidFormatErrorMessage: String = stringResource(R.string.card_number_must_be_digits_only),
     invalidCardNumberErrorMessage: String = stringResource(R.string.invalid_card_number),
     unknownCardBrandErrorMessage: String = stringResource(R.string.incomplete_card_number),
@@ -74,14 +74,14 @@ fun CardNumberTextField(
         },
         isError = inputState.isError,
         errorMessage = inputState.errorMessage,
-        keyboardOptions = keyboardOptions,
         cardBrandIcon = { CardBrandIcon(inputState.cardBrand) },
         onClearCardNumberClick = {
             input = InputFieldValue.WithSelection(TextFieldValue(""))
             onCardNumberChange("")
         },
         clearIcon = clearIcon,
-        errorMessageFontSize = errorMessageFontSize
+        errorMessageFontSize = errorMessageFontSize,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
 
     )
 }

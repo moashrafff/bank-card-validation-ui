@@ -2,7 +2,10 @@
 <resources>
     <string name="enter_text">Enter text</string>
     <string name="card_number_must_be_digits_only">Card number must be digits only</string>
+    <string name="cvv_must_be_digits_only">Card CVV must be digits only</string>
     <string name="invalid_card_number">Invalid card number</string>
+    <string name="invalid_cvv_length">Invalid card cvv</string>
     <string name="incomplete_card_number">Incomplete card number</string>
     <string name="card_number">Card Number</string>
+    <string name="cvv">Cvv/Cvc</string>
 </resources>

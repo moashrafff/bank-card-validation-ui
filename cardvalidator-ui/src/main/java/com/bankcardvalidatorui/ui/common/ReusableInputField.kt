@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,11 +36,12 @@ fun ReusableInputField(
     onValueChange: (InputFieldValue) -> Unit,
     isError: Boolean = false,
     errorMessage: String? = null,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     cardBrandIcon: @Composable (() -> Unit)? = null,
     errorMessageFontSize: Float = 12f,
     onClearCardNumberClick: () -> Unit,
-    clearIcon: ImageVector? = null
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    clearIcon: ImageVector? = null,
+    visualTransformation : VisualTransformation = VisualTransformation.None
 ) {
     val textFieldValue = value.toTextFieldValue()
 
@@ -73,7 +75,8 @@ fun ReusableInputField(
                         )
                     }
                 },
-                modifier = modifier.fillMaxWidth()
+                modifier = modifier.fillMaxWidth(),
+                visualTransformation = visualTransformation
             )
             if (isError && !errorMessage.isNullOrBlank()) {
                 Text(
