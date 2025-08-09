@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.focus.FocusDirection
 import com.bankcardvalidator.api.CardBrandDetector
 import com.bankcardvalidator.api.CardValidator
 import com.bankcardvalidatorui.ui.components.CardCvvTextField
@@ -35,14 +36,13 @@ class MainActivity : ComponentActivity() {
             }
 
             var cardNumberEntered by remember { mutableStateOf("") }
-            var isCardNumberValid by remember { mutableStateOf(false) }
 
             Column {
                 CardNumberTextField(
                     onCardNumberChange = { updatedCardNumber ->
                         cardNumberEntered = updatedCardNumber
                     },
-                    onCardNumberValidChange = { valid -> isCardNumberValid = valid }
+                    onCompleteFocusDirection = FocusDirection.Down
                 )
                 CardCvvTextField(
                     onCvvChange = {},

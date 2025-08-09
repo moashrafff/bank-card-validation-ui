@@ -30,7 +30,7 @@ fun CardNumberTextField(
     clearIcon: ImageVector? = null,
     errorMessageFontSize: Float = 12f,
     onCardNumberChange: (String) -> Unit,
-    onCardNumberValidChange: (Boolean) -> Unit
+    onCardNumberValidChange: ((Boolean) -> Unit)? = null
 ) {
     var input by rememberSaveable(stateSaver = InputFieldValueWithSelectionSaver, init = {
         mutableStateOf(
@@ -49,7 +49,7 @@ fun CardNumberTextField(
 
     LaunchedEffect(inputState.isValidCardNumber) {
 
-        onCardNumberValidChange(inputState.isValidCardNumber)
+        onCardNumberValidChange?.let { it(inputState.isValidCardNumber) }
 
         if (!wasValid && inputState.isValidCardNumber) {
             if (onCompleteFocusDirection != null) focusManager.moveFocus(
