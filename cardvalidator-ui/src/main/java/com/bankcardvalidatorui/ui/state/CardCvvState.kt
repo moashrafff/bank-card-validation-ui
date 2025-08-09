@@ -13,42 +13,42 @@ import com.bankcardvalidator.cvvValidationEngine.result.CvvValidationResult
 import com.bankcardvalidator.result.CardNumberValidationResult
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.calculateNewSelection
-
-@Composable
-internal fun rememberCardCvvState(
-    cvvInput: InputFieldValue.WithSelection,
-    optionalCardNumber : String? = null,
-    invalidFormatErrorMessage: String,
-    invalidCardCvvLengthErrorMessage: String,
-    validCvvMessage: String? = "valid cvv"
-) : CardInputFieldState {
-
-    val cardCvvDigitsOnly = cvvInput.value.text.filter { it.isDigit() }
-    val cardNumberDigitsOnly = optionalCardNumber?.filter { it.isDigit() }
-
-    val isCvvValid : CvvValidationResult = remember(cardCvvDigitsOnly) {
-        CardValidator.isCvvValid(cvv = cardCvvDigitsOnly, cardNumber = optionalCardNumber)
-    }
-    val cardRule : CardTypeRule? = remember(cardNumberDigitsOnly) {
-        detectCardBrand(cardNumberDigitsOnly.orEmpty())
-    }
-
-    val cardCvvMaxLength = cardRule?.cvvLength
-
-    val cvvValidationMessage = when (isCvvValid) {
-        CvvValidationResult.InvalidFormat -> invalidFormatErrorMessage
-        CvvValidationResult.InvalidLength -> invalidCardCvvLengthErrorMessage
-        CvvValidationResult.Valid -> validCvvMessage
-    }
-
-    return CardInputFieldState(
-        formattedCardNumber = formattedCardNumber,
-        rawDigits = limitedCardNumberDigits,
-        newSelection = newTextFieldValue,
-        cardBrand = null,
-        isError = isError,
-        errorMessage = cvvValidationMessage,
-        maxLength = cardCvvMaxLength ?: 3
-    )
-    
-}
+//
+//@Composable
+//internal fun rememberCardCvvState(
+//    cvvInput: InputFieldValue.WithSelection,
+//    optionalCardNumber : String? = null,
+//    invalidFormatErrorMessage: String,
+//    invalidCardCvvLengthErrorMessage: String,
+//    validCvvMessage: String? = "valid cvv"
+//) : CardInputFieldState {
+//
+//    val cardCvvDigitsOnly = cvvInput.value.text.filter { it.isDigit() }
+//    val cardNumberDigitsOnly = optionalCardNumber?.filter { it.isDigit() }
+//
+//    val isCvvValid : CvvValidationResult = remember(cardCvvDigitsOnly) {
+//        CardValidator.isCvvValid(cvv = cardCvvDigitsOnly, cardNumber = optionalCardNumber)
+//    }
+//    val cardRule : CardTypeRule? = remember(cardNumberDigitsOnly) {
+//        detectCardBrand(cardNumberDigitsOnly.orEmpty())
+//    }
+//
+//    val cardCvvMaxLength = cardRule?.cvvLength
+//
+//    val cvvValidationMessage = when (isCvvValid) {
+//        CvvValidationResult.InvalidFormat -> invalidFormatErrorMessage
+//        CvvValidationResult.InvalidLength -> invalidCardCvvLengthErrorMessage
+//        CvvValidationResult.Valid -> validCvvMessage
+//    }
+//
+//    return CardInputFieldState(
+//        formattedCardNumber = formattedCardNumber,
+//        rawDigits = limitedCardNumberDigits,
+//        newSelection = newTextFieldValue,
+//        cardBrand = null,
+//        isError = isError,
+//        errorMessage = cvvValidationMessage,
+//        maxLength = cardCvvMaxLength ?: 3
+//    )
+//
+//}

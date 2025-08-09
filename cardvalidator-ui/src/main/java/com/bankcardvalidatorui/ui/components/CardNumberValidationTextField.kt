@@ -24,10 +24,10 @@ fun CardNumberTextField(
     invalidCardNumberErrorMessage: String = "Invalid card number",
     unknownCardBrandErrorMessage: String = "Incomplete card number",
     textFieldLabel: String = "Card Number",
-    onCardNumberChange: (String) -> Unit,
     onCompleteFocusDirection: FocusDirection? = null,
     clearIcon: Painter? = null,
     errorMessageFontSize: Float = 12f,
+    onCardNumberChange: (String) -> Unit,
     onCardNumberValidChange: (Boolean) -> Unit
 ) {
     var input by rememberSaveable(stateSaver = InputFieldValueWithSelectionSaver, init = {
@@ -35,6 +35,8 @@ fun CardNumberTextField(
             InputFieldValue.WithSelection(TextFieldValue(""))
         )
     }
+    )
+
     val focusManager = LocalFocusManager.current
     val inputState = rememberCardNumberInputState(
         input = input,
@@ -72,8 +74,7 @@ fun CardNumberTextField(
         isError = inputState.isError,
         errorMessage = inputState.errorMessage,
         keyboardOptions = keyboardOptions,
-        cardBrandIcon =
-            { CardBrandIcon(inputState.cardBrand) },
+        cardBrandIcon = { CardBrandIcon(inputState.cardBrand) },
         onClearCardNumberClick = {
             input = InputFieldValue.WithSelection(TextFieldValue(""))
             onCardNumberChange("")

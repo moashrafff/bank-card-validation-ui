@@ -32,7 +32,10 @@ class MainActivity : ComponentActivity() {
 
             }
 
-            CardNumberTextField(KeyboardOptions(keyboardType = KeyboardType.Number))
+            CardNumberTextField(KeyboardOptions(keyboardType = KeyboardType.Number),
+                onCardNumberChange = {},
+                onCardNumberValidChange = {}
+            )
         }
     }
 }
