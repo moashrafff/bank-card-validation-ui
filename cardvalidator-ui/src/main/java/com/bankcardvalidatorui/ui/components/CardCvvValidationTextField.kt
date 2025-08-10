@@ -9,6 +9,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
@@ -17,7 +18,6 @@ import com.bankcardvalidatorui.ui.common.ReusableInputField
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.InputFieldValueWithSelectionSaver
 import com.bankcardvalidatorui.ui.state.rememberCardCvvState
-
 @Composable
 fun CardCvvTextField(
     invalidFormatErrorMessage: String = stringResource(R.string.cvv_must_be_digits_only),
@@ -40,33 +40,28 @@ fun CardCvvTextField(
         invalidCardCvvLengthErrorMessage = invalidCvvLengthErrorMessage
     )
 
-    // send VALID (not error)
     LaunchedEffect(inputState.isError) {
         onCvvValidChange(!inputState.isError)
     }
 
-    // Trim current text if max length shrinks (e.g., Amex->Visa)
-    LaunchedEffect(inputState.maxLength) {
-        val digits = input.value.text.filter(Char::isDigit)
-        if (digits.length > inputState.maxLength) {
-            val trimmed = digits.take(inputState.maxLength)
-            input = InputFieldValue.WithSelection(TextFieldValue(trimmed))
-            onCvvChange(trimmed)
-        }
-    }
-
     ReusableInputField(
         label = textFieldLabel,
-        value = InputFieldValue.WithSelection(input.value),
+        value = input,
         onValueChange = {
             val newInput = it as InputFieldValue.WithSelection
-            val digitsOnly = newInput.value.text.filter(Char::isDigit).take(inputState.maxLength)
+            val maxLen = inputState.maxLength
 
-            // write back the sanitized value so letters/paste are blocked visually
+            val raw = newInput.value
+            val digits = raw.text.filter(Char::isDigit).take(maxLen)
+
+            val sel = raw.selection
+            val end = minOf(sel.end, digits.length)
+            val start = minOf(sel.start, end)
+
             input = InputFieldValue.WithSelection(
-                TextFieldValue(digitsOnly) // cursor at end is fine for CVV
+                TextFieldValue(digits, TextRange(start, end))
             )
-            onCvvChange(digitsOnly)
+            onCvvChange(digits)
         },
         isError = inputState.isError,
         errorMessage = inputState.errorMessage,
