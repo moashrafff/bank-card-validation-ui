@@ -13,7 +13,7 @@ object CardValidator {
      * - Returns [CvvValidationResult.InvalidLength] if the CVV length is incorrect.
      * - Returns [CvvValidationResult.Valid] if the CVV is in the correct format and length for the detected card brand.
      */
-    fun isCvvValid(cardNumber: String, cvv: String): CvvValidationResult =
+    fun isCvvValid(cardNumber: String?, cvv: String): CvvValidationResult =
         com.bankcardvalidator.cvvValidationEngine.isCvvValid(cardNumber = cardNumber, cvv = cvv)
 
     /**

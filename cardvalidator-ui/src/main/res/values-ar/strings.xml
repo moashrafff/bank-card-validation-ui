@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_text">أدخل النص</string>
+    <string name="card_number_must_be_digits_only">يجب أن يكون رقم البطاقة أرقام فقط</string>
+    <string name="cvv_must_be_digits_only">يجب أن يكون رمز البطاقة أرقام فقط</string>
+    <string name="invalid_card_number">رقم البطاقة غير صالح</string>
+    <string name="invalid_cvv_length">رمز البطاقة غير صالح</string>
+    <string name="incomplete_card_number">رقم البطاقة غير مكتمل</string>
+    <string name="card_number">رقم البطاقة</string>
+    <string name="cvv">Cvv/Cvc</string>
+</resources>

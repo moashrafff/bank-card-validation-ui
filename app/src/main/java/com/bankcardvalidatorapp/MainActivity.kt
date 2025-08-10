@@ -1,17 +1,21 @@
-package com.bankcardvalidator.bankcardvalidator
+package com.bankcardvalidatorapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
-
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.focus.FocusDirection
 import com.bankcardvalidator.api.CardBrandDetector
 import com.bankcardvalidator.api.CardValidator
+import com.bankcardvalidatorui.ui.components.CardCvvTextField
+import com.bankcardvalidatorui.ui.components.CardNumberTextField
 
-
-import com.bankcardvalidator.ui.ReusableInputField
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +35,21 @@ class MainActivity : ComponentActivity() {
 
             }
 
-            ReusableInputField(
-                modifier = Modifier,
-                label = "Enter text"
-            )
+            var cardNumberEntered by remember { mutableStateOf("") }
+
+            Column {
+                CardNumberTextField(
+                    onCardNumberChange = { updatedCardNumber ->
+                        cardNumberEntered = updatedCardNumber
+                    },
+                    onCompleteFocusDirection = FocusDirection.Down
+                )
+                CardCvvTextField(
+                    onCvvChange = {},
+                    optionalCardNumber = cardNumberEntered,
+                    onCvvValidChange = {}
+                )
+            }
         }
     }
 }

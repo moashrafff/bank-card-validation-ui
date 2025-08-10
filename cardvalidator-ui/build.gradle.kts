@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.bankcardvalidator.ui"
+    namespace = "com.bankcardvalidatorui"
     compileSdk = 36
 
     defaultConfig {
@@ -56,4 +56,7 @@ dependencies {
 
     // Optional: Tooling for preview/debug
     debugImplementation(libs.androidx.ui.tooling)
+
+//    compileOnly(fileTree(mapOf("include" to listOf("*.jar", "*.aar"), "dir" to "libs")))
+    compileOnly(project(":cardvalidationengine"))
 }

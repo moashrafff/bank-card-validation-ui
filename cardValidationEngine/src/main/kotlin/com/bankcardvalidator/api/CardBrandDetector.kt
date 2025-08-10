@@ -1,6 +1,7 @@
 package com.bankcardvalidator.api
 
 import com.bankcardvalidator.brandDetectorEngine.model.CardBrandRules
+import com.bankcardvalidator.brandDetectorEngine.model.CardTypeRule
 import com.bankcardvalidator.enums.CardType
 
 object CardBrandDetector {
@@ -26,5 +27,12 @@ object CardBrandDetector {
     fun isSupportedCard(cardNumber: String): Boolean {
         if (!cardNumber.all { it.isDigit() || it.isWhitespace() }) return false
         return CardBrandRules.getRule(cardNumber) != null
+    }
+
+    /**
+     * Detects the card brand (Visa, Mastercard, etc.) based on card number.
+     */
+    fun detectCardBrand(cardNumber: String): CardTypeRule? {
+        return CardBrandRules.detectCardBrand(cardNumber)
     }
 }
