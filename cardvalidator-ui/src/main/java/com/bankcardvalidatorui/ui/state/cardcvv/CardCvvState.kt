@@ -1,4 +1,4 @@
-package com.bankcardvalidatorui.ui.state
+package com.bankcardvalidatorui.ui.state.cardcvv
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

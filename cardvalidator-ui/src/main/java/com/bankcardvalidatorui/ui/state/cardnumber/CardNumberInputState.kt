@@ -1,4 +1,4 @@
-package com.bankcardvalidatorui.ui.state
+package com.bankcardvalidatorui.ui.state.cardnumber
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -40,7 +40,6 @@ internal fun rememberCardNumberInputState(
 
     val newSelection = calculateNewSelection(
         oldValue = input.value,
-        rawDigits = limitedCardNumberDigits,
         formatted = formattedCardNumber
     )
 

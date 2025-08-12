@@ -14,6 +14,7 @@ import androidx.compose.ui.focus.FocusDirection
 import com.bankcardvalidator.api.CardBrandDetector
 import com.bankcardvalidator.api.CardValidator
 import com.bankcardvalidatorui.ui.components.CardCvvTextField
+import com.bankcardvalidatorui.ui.components.CardExpiryDateTextField
 import com.bankcardvalidatorui.ui.components.CardNumberTextField
 
 
@@ -48,6 +49,10 @@ class MainActivity : ComponentActivity() {
                     onCvvChange = {},
                     optionalCardNumber = cardNumberEntered,
                     onCvvValidChange = {}
+                )
+                CardExpiryDateTextField(
+                    onExpiryDateChange = {},
+                    onExpiryDateValidChange = {}
                 )
             }
         }

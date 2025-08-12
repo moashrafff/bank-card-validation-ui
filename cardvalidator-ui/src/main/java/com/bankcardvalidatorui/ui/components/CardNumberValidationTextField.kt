@@ -18,7 +18,7 @@ import com.bankcardvalidatorui.ui.common.CardBrandIcon
 import com.bankcardvalidatorui.ui.common.ReusableInputField
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.InputFieldValueWithSelectionSaver
-import com.bankcardvalidatorui.ui.state.rememberCardNumberInputState
+import com.bankcardvalidatorui.ui.state.cardnumber.rememberCardNumberInputState
 
 @Composable
 fun CardNumberTextField(

@@ -17,7 +17,6 @@ fun InputFieldValue.updateWith(newValue: TextFieldValue) = when (this) {
 
 internal fun calculateNewSelection(
     oldValue: TextFieldValue,
-    rawDigits: String,
     formatted: String
 ): TextRange {
     val digitsBeforeCursor = oldValue.text
@@ -32,4 +31,40 @@ internal fun calculateNewSelection(
     }
 
     return TextRange(index)
+}
+
+fun String.formatExpiryDisplay(): String {
+    val digitsOnlyDate = this
+    val d = digitsOnlyDate.take(4)
+    return when {
+        d.isEmpty()      -> ""
+        d.length <= 2    -> d
+        else             -> d.substring(0, 2) + "/" + d.substring(2)
+    }
+}
+
+/**
+ * Smart expiry editor.
+ * - Auto-prepends 0 if first digit is 2..9
+ * - Inserts slash after MM
+ * - Caps to 4 digits total
+ * - Puts caret at end (after slash once MM is complete)
+ */
+fun applySmartExpiryEditing(
+    previous: TextFieldValue,
+    incoming: TextFieldValue
+): TextFieldValue {
+    val prevDigits = previous.text.filter(Char::isDigit)
+    val rawDigits = incoming.text.filter(Char::isDigit)
+
+    val coerced = if (prevDigits.isEmpty() && rawDigits.isNotEmpty() && rawDigits[0] in '2'..'9') {
+        "0" + rawDigits[0] + rawDigits.drop(1)
+    } else {
+        rawDigits
+    }
+
+    val digits = coerced.take(4)
+    val display = digits.formatExpiryDisplay()
+
+    return TextFieldValue(text = display, selection = TextRange(display.length))
 }

@@ -1,9 +1,9 @@
 package com.bankcardvalidator.api
 
-import com.bankcardvalidator.result.CardNumberValidationResult
+import com.bankcardvalidator.api.CardValidator.isCardNumberValid
 import com.bankcardvalidator.cvvValidationEngine.result.CvvValidationResult
+import com.bankcardvalidator.result.CardNumberValidationResult
 import com.bankcardvalidator.result.ExpiryValidationResult
-import java.util.Calendar
 
 object CardValidator {
     /**
@@ -43,22 +43,6 @@ object CardValidator {
      * @return [ExpiryValidationResult] indicating whether the input is valid, expired, or has formatting/month errors
      */
 
-    fun isExpiryDateValid(expiryDate: String): ExpiryValidationResult {
-        val cleaned = expiryDate.replace("[^\\d]".toRegex(), "")
-        if (cleaned.length != 4) return ExpiryValidationResult.InvalidFormat
-
-        val month = cleaned.substring(0, 2).toIntOrNull() ?: return ExpiryValidationResult.InvalidFormat
-        val year = cleaned.substring(2, 4).toIntOrNull() ?: return ExpiryValidationResult.InvalidFormat
-        if (month !in 1..12) return ExpiryValidationResult.InvalidMonth
-
-        val calendar = Calendar.getInstance()
-        val currentMonth = calendar.get(Calendar.MONTH) + 1 // Calendar.MONTH is 0-based
-        val currentYear = calendar.get(Calendar.YEAR) % 100 // Two-digit year
-
-        return if (year < currentYear || (year == currentYear && month < currentMonth)) {
-            ExpiryValidationResult.Expired
-        } else {
-            ExpiryValidationResult.Valid
-        }
-    }
+    fun isExpiryDateValid(expiryDate: String): ExpiryValidationResult =
+        com.bankcardvalidator.expiryDateValidationEngine.isExpiryDateValid(expiryDate = expiryDate)
 }
