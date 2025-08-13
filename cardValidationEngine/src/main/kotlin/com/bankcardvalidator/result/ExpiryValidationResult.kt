@@ -5,4 +5,5 @@ sealed class ExpiryValidationResult {
     object InvalidFormat : ExpiryValidationResult()
     object InvalidMonth : ExpiryValidationResult()
     object Expired : ExpiryValidationResult()
+    object TooFar : ExpiryValidationResult()
 }
