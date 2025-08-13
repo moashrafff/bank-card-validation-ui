@@ -57,10 +57,19 @@ fun applySmartExpiryEditing(
     val prevDigits = previous.text.filter(Char::isDigit)
     val rawDigits = incoming.text.filter(Char::isDigit)
 
-    val coerced = if (prevDigits.isEmpty() && rawDigits.isNotEmpty() && rawDigits[0] in '2'..'9') {
-        "0" + rawDigits[0] + rawDigits.drop(1)
-    } else {
-        rawDigits
+    val coerced = when {
+        prevDigits.isEmpty() && rawDigits.isNotEmpty() && rawDigits[0] in '2'..'9' -> {
+            "0$rawDigits"
+        }
+
+        prevDigits.length == 1 &&
+                prevDigits[0] == '1' &&
+                rawDigits.length >= 2 &&
+                rawDigits[1] in '3'..'9' -> {
+            "0${prevDigits}${rawDigits.drop(1)}"
+        }
+
+        else -> rawDigits
     }
 
     val digits = coerced.take(4)

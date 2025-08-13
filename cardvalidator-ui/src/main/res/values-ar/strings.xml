@@ -11,6 +11,7 @@
     <string name="cvv">Cvv/Cvc</string>
     <string name="invalid_expiry_date_month">شهر انتهاء الصلاحية غير صالح</string>
     <string name="expired_card">انتهت صلاحية الكارت</string>
-    <string name="expiry_date">تاريخ الصلاحية</string>
+    <string name="expiry_date">شهر/سنة</string>
+    <string name="too_far_in_future">تاريخ انتهاء البطاقة بعيد جداً</string>
 
 </resources>

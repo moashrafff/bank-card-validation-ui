@@ -87,6 +87,7 @@ class InputFieldValueTest {
         val result = applySmartExpiryEditing(previous, incoming)
         assertEquals(TextFieldValue("01/3", TextRange(4)), result)
     }
+
     @Test
     fun `Given month from 2 to 9 month when calling applySmartExpiryEditing then return MM Month` () {
         val previous = TextFieldValue("", TextRange(1))

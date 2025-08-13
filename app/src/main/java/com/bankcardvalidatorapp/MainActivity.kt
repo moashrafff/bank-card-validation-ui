@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
                 CardBrandDetector.detectCardType(cardNumber = cardNumber)
                 CardBrandDetector.isSupportedCard(cardNumber = cardNumber)
                 CardBrandDetector.getRequiredCvvLength(cardNumber = cardNumber)
-
             }
 
             var cardNumberEntered by remember { mutableStateOf("") }
@@ -45,14 +44,16 @@ class MainActivity : ComponentActivity() {
                     },
                     onCompleteFocusDirection = FocusDirection.Down
                 )
-                CardCvvTextField(
-                    onCvvChange = {},
-                    optionalCardNumber = cardNumberEntered,
-                    onCvvValidChange = {}
-                )
                 CardExpiryDateTextField(
+                    completeFocusDirection = FocusDirection.Down,
                     onExpiryDateChange = {},
                     onExpiryDateValidChange = {}
+                )
+                CardCvvTextField(
+                    canCloseKeyBoardAfterValidation = true,
+                    optionalCardNumber = cardNumberEntered,
+                    onCvvChange = {},
+                    onCvvValidChange = {}
                 )
             }
         }

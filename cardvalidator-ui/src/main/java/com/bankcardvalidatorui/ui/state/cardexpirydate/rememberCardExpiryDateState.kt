@@ -14,9 +14,9 @@ internal fun rememberCardExpiryDateState(
     invalidFormatErrorMessage: String,
     invalidMonthErrorMessage: String,
     expiredCardErrorMessage: String,
+    tooFarErrorMessage: String
 ): CardExpiryDateInputFieldState {
 
-    // keep only digits, cap at 4 (MMYY)
     val digitsOnly = remember(expiryInput.value.text) {
         buildString(capacity = 4) {
             for (ch in expiryInput.value.text) {
@@ -38,6 +38,7 @@ internal fun rememberCardExpiryDateState(
         ExpiryValidationResult.InvalidFormat -> invalidFormatErrorMessage
         ExpiryValidationResult.InvalidMonth  -> invalidMonthErrorMessage
         ExpiryValidationResult.Expired       -> expiredCardErrorMessage
+        ExpiryValidationResult.TooFar -> tooFarErrorMessage
         ExpiryValidationResult.Valid, null   -> null
     }
 

@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -24,6 +25,7 @@ fun CardCvvTextField(
     invalidFormatErrorMessage: String = stringResource(R.string.cvv_must_be_digits_only),
     invalidCvvLengthErrorMessage: String = stringResource(R.string.invalid_cvv_length),
     textFieldLabel: String = stringResource(R.string.cvv),
+    canCloseKeyBoardAfterValidation: Boolean = false,
     optionalCardNumber: String? = null,
     clearIcon: ImageVector? = null,
     errorMessageFontSize: Float = 12f,
@@ -40,8 +42,12 @@ fun CardCvvTextField(
         invalidCardCvvLengthErrorMessage = invalidCvvLengthErrorMessage
     )
 
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+
     LaunchedEffect(inputState.isError) {
         onCvvValidChange(!inputState.isError)
+
     }
 
     ReusableInputField(
@@ -62,6 +68,10 @@ fun CardCvvTextField(
                 TextFieldValue(digits, TextRange(start, end))
             )
             onCvvChange(digits)
+
+            if (digits.length == maxLen && canCloseKeyBoardAfterValidation)
+                keyboardController?.hide()
+
         },
         isError = inputState.isError,
         errorMessage = inputState.errorMessage,

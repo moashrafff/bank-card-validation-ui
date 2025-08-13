@@ -11,5 +11,6 @@
     <string name="cvv">Cvv/Cvc</string>
     <string name="invalid_expiry_date_month">Invalid expiry date month</string>
     <string name="expired_card"> Card Expired</string>
-    <string name="expiry_date">Expiry Date</string>
+    <string name="expiry_date">MM/YY</string>
+    <string name="too_far_in_future">Too Far!</string>
 </resources>
