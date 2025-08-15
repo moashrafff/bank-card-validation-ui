@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
@@ -22,10 +23,11 @@ import com.bankcardvalidatorui.ui.state.cardexpirydate.rememberCardExpiryDateSta
 
 @Composable
 fun CardExpiryDateTextField(
+    modifier: Modifier = Modifier,
     invalidFormatErrorMessage: String = stringResource(R.string.expiry_must_be_digits_only),
     invalidMonthErrorMessage: String = stringResource(R.string.invalid_expiry_date_month),
     expiredCardErrorMessage: String = stringResource(R.string.expired_card),
-    tooFarErrorMessage: String = stringResource(R.string.too_far_in_future),
+    tooFarMessage: String = stringResource(R.string.too_far_in_future),
     textFieldLabel: String = stringResource(R.string.expiry_date),
     completeFocusDirection: FocusDirection? = null,
     clearIcon: ImageVector? = null,
@@ -45,7 +47,7 @@ fun CardExpiryDateTextField(
         invalidFormatErrorMessage = invalidFormatErrorMessage,
         invalidMonthErrorMessage = invalidMonthErrorMessage,
         expiredCardErrorMessage = expiredCardErrorMessage,
-        tooFarErrorMessage = tooFarErrorMessage
+        tooFarMessage = tooFarMessage
     )
     var wasValid by rememberSaveable { mutableStateOf(false) }
 
@@ -63,6 +65,7 @@ fun CardExpiryDateTextField(
     }
 
     ReusableInputField(
+        modifier = modifier,
         label = textFieldLabel,
         value = input,
         onValueChange = {
@@ -83,6 +86,7 @@ fun CardExpiryDateTextField(
             input = InputFieldValue.WithSelection(TextFieldValue(""))
             onExpiryDateChange("")
         },
+        tooFarMessage = inputState.infoMessage,
         clearIcon = clearIcon,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
         errorMessageFontSize = errorMessageFontSize,

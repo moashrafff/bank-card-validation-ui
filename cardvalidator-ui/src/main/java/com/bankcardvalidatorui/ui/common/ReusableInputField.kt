@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
@@ -35,20 +36,21 @@ fun ReusableInputField(
     value: InputFieldValue,
     onValueChange: (InputFieldValue) -> Unit,
     isError: Boolean = false,
+    tooFarMessage: String? = null,
     errorMessage: String? = null,
     cardBrandIcon: @Composable (() -> Unit)? = null,
     errorMessageFontSize: Float = 12f,
     onClearCardNumberClick: () -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     clearIcon: ImageVector? = null,
-    visualTransformation : VisualTransformation = VisualTransformation.None
+    visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     val textFieldValue = value.toTextFieldValue()
 
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 15.dp, vertical = 35.dp)
+            .padding(15.dp)
     ) {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             OutlinedTextField(
@@ -75,13 +77,21 @@ fun ReusableInputField(
                         )
                     }
                 },
-                modifier = modifier.fillMaxWidth(),
+                modifier = modifier,
                 visualTransformation = visualTransformation
             )
             if (isError && !errorMessage.isNullOrBlank()) {
                 Text(
                     text = errorMessage,
                     color = MaterialTheme.colorScheme.error,
+                    style = TextStyle(fontSize = errorMessageFontSize.sp),
+                    modifier = modifier.padding(start = 16.dp, top = 4.dp)
+                )
+            }
+            if (tooFarMessage != null) {
+                Text(
+                    text = tooFarMessage,
+                    color = Color.Gray,
                     style = TextStyle(fontSize = errorMessageFontSize.sp),
                     modifier = modifier.padding(start = 16.dp, top = 4.dp)
                 )

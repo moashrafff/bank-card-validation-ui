@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
@@ -22,11 +23,12 @@ import com.bankcardvalidatorui.ui.state.cardnumber.rememberCardNumberInputState
 
 @Composable
 fun CardNumberTextField(
+    modifier:Modifier = Modifier,
     invalidFormatErrorMessage: String = stringResource(R.string.card_number_must_be_digits_only),
     invalidCardNumberErrorMessage: String = stringResource(R.string.invalid_card_number),
     unknownCardBrandErrorMessage: String = stringResource(R.string.incomplete_card_number),
     textFieldLabel: String = stringResource(R.string.card_number),
-    onCompleteFocusDirection: FocusDirection? = null,
+    completeFocusDirection: FocusDirection? = null,
     clearIcon: ImageVector? = null,
     errorMessageFontSize: Float = 12f,
     onCardNumberChange: (String) -> Unit,
@@ -52,8 +54,8 @@ fun CardNumberTextField(
         onCardNumberValidChange?.let { it(inputState.isValidCardNumber) }
 
         if (!wasValid && inputState.isValidCardNumber) {
-            if (onCompleteFocusDirection != null) focusManager.moveFocus(
-                onCompleteFocusDirection
+            if (completeFocusDirection != null) focusManager.moveFocus(
+                completeFocusDirection
             )
             else {
                 focusManager.clearFocus()
@@ -62,6 +64,7 @@ fun CardNumberTextField(
         wasValid = inputState.isValidCardNumber
     }
     ReusableInputField(
+        modifier = modifier,
         label = textFieldLabel,
         value = InputFieldValue.WithSelection(inputState.newSelection),
         onValueChange = {
