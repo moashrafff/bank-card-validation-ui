@@ -7,6 +7,7 @@ import com.bankcardvalidator.api.CardValidator
 import com.bankcardvalidator.result.ExpiryValidationResult
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.formatExpiryDisplay
+import java.util.Calendar
 
 @Composable
 internal fun rememberCardExpiryDateState(
@@ -14,7 +15,7 @@ internal fun rememberCardExpiryDateState(
     invalidFormatErrorMessage: String,
     invalidMonthErrorMessage: String,
     expiredCardErrorMessage: String,
-    tooFarErrorMessage: String
+    tooFarMessage: String
 ): CardExpiryDateInputFieldState {
 
     val digitsOnly = remember(expiryInput.value.text) {
@@ -33,20 +34,35 @@ internal fun rememberCardExpiryDateState(
         if (digitsOnly.isEmpty()) null
         else CardValidator.isExpiryDateValid(digitsOnly)
     }
+    var isInfoMessage = false
 
     val errorMsg = when (validation) {
         ExpiryValidationResult.InvalidFormat -> invalidFormatErrorMessage
-        ExpiryValidationResult.InvalidMonth  -> invalidMonthErrorMessage
-        ExpiryValidationResult.Expired       -> expiredCardErrorMessage
-        ExpiryValidationResult.TooFar -> tooFarErrorMessage
-        ExpiryValidationResult.Valid, null   -> null
+        ExpiryValidationResult.InvalidMonth -> invalidMonthErrorMessage
+        ExpiryValidationResult.Expired -> expiredCardErrorMessage
+        ExpiryValidationResult.Valid, null -> null
+    }
+    if (digitsOnly.length == 4) {
+        val year = digitsOnly.takeLast(2).toInt()
+
+        val calendar = Calendar.getInstance()
+        val fullCurrentYear = calendar.get(Calendar.YEAR)
+        val fullExpiryYear = 2000 + year
+
+        val maxAllowedYear = fullCurrentYear + 20
+        if (fullExpiryYear > maxAllowedYear) {
+            isInfoMessage = true
+        }
     }
 
-    val isError = validation != null && validation != ExpiryValidationResult.Valid
+    val isError =
+        validation != null && validation != ExpiryValidationResult.Valid
 
     return CardExpiryDateInputFieldState(
         isError = isError,
         errorMessage = errorMsg,
+        isInfoMessage = isInfoMessage,
+        infoMessage = if (isInfoMessage) tooFarMessage else null,
         newSelection = TextFieldValue(text = display)
     )
 }

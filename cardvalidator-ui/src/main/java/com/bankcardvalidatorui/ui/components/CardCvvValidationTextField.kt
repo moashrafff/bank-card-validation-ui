@@ -7,21 +7,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bankcardvalidatorui.R
 import com.bankcardvalidatorui.ui.common.ReusableInputField
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.InputFieldValueWithSelectionSaver
 import com.bankcardvalidatorui.ui.state.cardcvv.rememberCardCvvState
+import com.bankcardvalidatorui.ui.utils.PasswordVisualTransformation
 
 @Composable
 fun CardCvvTextField(
+    modifier: Modifier = Modifier,
     invalidFormatErrorMessage: String = stringResource(R.string.cvv_must_be_digits_only),
     invalidCvvLengthErrorMessage: String = stringResource(R.string.invalid_cvv_length),
     textFieldLabel: String = stringResource(R.string.cvv),
@@ -51,6 +53,7 @@ fun CardCvvTextField(
     }
 
     ReusableInputField(
+        modifier = modifier,
         label = textFieldLabel,
         value = input,
         onValueChange = {
@@ -82,6 +85,10 @@ fun CardCvvTextField(
         clearIcon = clearIcon,
         errorMessageFontSize = errorMessageFontSize,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
-        visualTransformation = PasswordVisualTransformation()
+        visualTransformation =  PasswordVisualTransformation.remember(
+            maskDelayMillis = 1500L,
+            text = input.value.text
+        )
+
     )
 }
