@@ -1,2 +1,4 @@
 jdk:
-  openjdk17
+  - 17
+install:
+  - ./gradlew :cardvalidationengine:publishToMavenLocal -x test
