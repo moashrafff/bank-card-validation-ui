@@ -1,7 +1,0 @@
-# jitpack.yml
-jdk:
-  - openjdk17
-
-# Override default build. Only publish the two library modules.
-install:
-  - ./gradlew clean :cardvalidationengine:publishToMavenLocal :cardvalidator-ui:publishToMavenLocal -x test
