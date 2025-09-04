@@ -4,12 +4,12 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 
-fun InputFieldValue.toTextFieldValue(): TextFieldValue = when (this) {
+internal fun InputFieldValue.toTextFieldValue(): TextFieldValue = when (this) {
     is InputFieldValue.Plain -> TextFieldValue(this.text)
     is InputFieldValue.WithSelection -> this.value
 }
 
-fun InputFieldValue.updateWith(newValue: TextFieldValue) = when (this) {
+internal fun InputFieldValue.updateWith(newValue: TextFieldValue) = when (this) {
     is InputFieldValue.Plain -> InputFieldValue.Plain(newValue.text)
     is InputFieldValue.WithSelection -> InputFieldValue.WithSelection(newValue)
 }
@@ -50,7 +50,7 @@ fun String.formatExpiryDisplay(): String {
  * - Caps to 4 digits total
  * - Puts caret at end (after slash once MM is complete)
  */
-fun applySmartExpiryEditing(
+internal fun applySmartExpiryEditing(
     previous: TextFieldValue,
     incoming: TextFieldValue
 ): TextFieldValue {

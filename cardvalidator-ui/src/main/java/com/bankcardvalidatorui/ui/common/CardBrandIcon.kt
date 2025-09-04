@@ -12,7 +12,7 @@ import com.bankcardvalidator.enums.CardType
 import com.bankcardvalidatorui.R
 
 @Composable
-fun CardBrandIcon(cardType: CardType?) {
+internal fun CardBrandIcon(cardType: CardType?) {
     val icon = when (cardType) {
         CardType.VISA -> painterResource(id = R.drawable.visa)
         CardType.MASTERCARD -> painterResource(R.drawable.mastercard)

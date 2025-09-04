@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import kotlinx.coroutines.delay
 
-class PasswordVisualTransformation private constructor(
+internal class PasswordVisualTransformation private constructor(
     private val showLastVisible: Boolean,
     private val mask: Char = '•'
 ) : VisualTransformation {

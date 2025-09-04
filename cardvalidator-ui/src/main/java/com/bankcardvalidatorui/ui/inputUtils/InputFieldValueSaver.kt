@@ -6,7 +6,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import com.bankcardvalidatorui.ui.inputTypes.InputFieldValue
 
-val InputFieldValueWithSelectionSaver: Saver<InputFieldValue.WithSelection, *> = listSaver(
+internal val InputFieldValueWithSelectionSaver: Saver<InputFieldValue.WithSelection, *> = listSaver(
     save = {
         listOf(
             it.value.text,

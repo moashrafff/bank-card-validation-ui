@@ -30,7 +30,7 @@ import com.bankcardvalidatorui.ui.inputUtils.toTextFieldValue
 import com.bankcardvalidatorui.ui.inputUtils.updateWith
 
 @Composable
-fun ReusableInputField(
+internal fun ReusableInputField(
     modifier: Modifier = Modifier,
     label: String = stringResource(R.string.enter_text),
     value: InputFieldValue,
