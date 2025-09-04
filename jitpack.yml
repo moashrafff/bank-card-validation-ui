@@ -1,5 +1,5 @@
 jdk:
   - openjdk17
-  -
-  - gradle:
-      - clean :cardvalidationengine:publishToMavenLocal :cardvalidator-ui:publishToMavenLocal
+
+gradle:
+  - clean :cardvalidationengine:publishToMavenLocal :cardvalidator-ui:publishToMavenLocal
