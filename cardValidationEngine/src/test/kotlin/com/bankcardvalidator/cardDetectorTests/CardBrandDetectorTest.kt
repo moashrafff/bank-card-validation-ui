@@ -71,8 +71,8 @@ class CardBrandDetectorTest {
     }
 
     @Test
-    fun `Given invalid card number when calling getRequiredCvvLength then return null`() {
-        assertEquals(null, CardBrandDetector.getRequiredCvvLength(INVALID_CARD))
+    fun `Given invalid card number when calling getRequiredCvvLength then return default value`() {
+        assertEquals(3, CardBrandDetector.getRequiredCvvLength(INVALID_CARD))
     }
 
     @Test
