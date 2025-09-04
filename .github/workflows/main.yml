@@ -53,3 +53,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Build libs & run tests
+        run: |
+          ./gradlew \
+            :cardvalidationengine:build \
+            :cardvalidationengine:test \
+            :cardvalidator-ui:assembleRelease \
+            :cardvalidator-ui:testDebugUnitTest
