@@ -1,5 +1,7 @@
 [versions]
 agp = "8.11.1"
+bankCardValidationUi = "1.0.0"
+bankCardValidationEngine = "1.0.0"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -14,6 +16,8 @@ material = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+bank-card-validation-engine = { module = "com.github.moashrafff:bank-card-validation-engine", version.ref = "bankCardValidationEngine" }
+bank-card-validation-ui = { module = "com.github.moashrafff:bank-card-validation-ui", version.ref = "bankCardValidationUi" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
