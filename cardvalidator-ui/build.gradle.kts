@@ -5,19 +5,8 @@ plugins {
     id("maven-publish")
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.bankcardvalidator"
-            artifactId = "cardvalidator-ui"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
-}
+group = "io.github.moashrafff.bankCardValidator"
+version = "1.0.0"
 
 android {
     namespace = "com.bankcardvalidatorui"
@@ -48,8 +37,26 @@ android {
     buildFeatures {
         compose = true
     }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.13"
+    }
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "io.github.moashrafff.bankCardValidator"
+            artifactId = "CardValidator-Ui"
+            version = "1.0.0"
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
     }
 }
 
@@ -72,6 +79,5 @@ dependencies {
     // Optional: Tooling for preview/debug
     debugImplementation(libs.androidx.ui.tooling)
 
-//    compileOnly(fileTree(mapOf("include" to listOf("*.jar", "*.aar"), "dir" to "libs")))
-    compileOnly(project(":cardvalidationengine"))
+    api(project(":cardvalidationengine"))
 }
