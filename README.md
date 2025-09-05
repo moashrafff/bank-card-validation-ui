@@ -113,7 +113,7 @@ CardCvvTextField(
 - Smart expiry date formatting  
 - Auto focus navigation on completion  
 
-*(Add screenshots or gifs here to showcase the UI.)*
+![](./readme-assets/gifs/gif_1.gif)
 
 ---
 
