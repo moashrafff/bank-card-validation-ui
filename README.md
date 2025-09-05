@@ -1,29 +1,26 @@
-# 💳 Bank Card Validator
+# 💳 Bank Card Validator UI
 
-A lightweight Kotlin library for **validating and detecting payment card details**, bundled with **Jetpack Compose UI components** for seamless integration into Android apps.
+A lightweight Android library providing **Jetpack Compose UI components** for validating and handling payment card input fields with real-time feedback.  
+Built on top of the Bank Card Validator engine.
 
 ---
 
 ## ✨ Features
 
-- 🔍 **Card brand detection**  
-  Detect Visa, Mastercard, and other brands based on card number patterns.
-
-- ✅ **Validation utilities**  
-  - Card number format & Luhn checksum validation  
-  - CVV format & length validation per brand  
-  - Expiry date parsing and expiration check  
-
 - 🎨 **UI components (Jetpack Compose)**  
   Ready-to-use composables for:
-  - Card Number  
-  - Expiry Date  
-  - CVV  
-  Each with real-time validation and error feedback.
+  - **Card Number** input with brand detection & validation  
+  - **Expiry Date** input with auto-formatting and expiration check  
+  - **CVV** input with per-brand length validation  
+
+- ⚡ **Real-time validation feedback**  
+  Shows error messages as the user types.  
+
+- 🖼️ **Brand icons support**  
+  Automatically displays card brand logos (Visa, Mastercard, etc.).  
 
 - 📦 **Published via JitPack**  
-  - `cardvalidationengine` → core validation logic (JAR)  
-  - `cardvalidator-ui` → Compose UI components (AAR)  
+  Distributed as an AAR library.
 
 ---
 
@@ -37,67 +34,47 @@ repositories {
 }
 ```
 
-Then add the dependencies:
+Then add the dependency:
 
 ```gradle
-// Core validation (pure Kotlin/JVM)
-implementation("com.github.moashrafff:BankCardValidator:cardvalidationengine:<version>")
-
-// UI components (Jetpack Compose, Android only)
-implementation("com.github.moashrafff:BankCardValidator:cardvalidator-ui:<version>")
+implementation("com.github.moashrafff:cardvalidator-ui:<version>")
 ```
 
 ---
 
 ## 🚀 Usage
 
-### Core API
-
+### Card Number Input
 ```kotlin
-// Detect card brand
-val brand = CardBrandDetector.detectCardType("4111111111111111")
-
-// Validate card number
-val result = CardValidator.isCardNumberValid("4111111111111111")
-
-// Validate CVV
-val cvvResult = CardValidator.isCvvValid("4111111111111111", "123")
-
-// Validate expiry date
-val expiryResult = CardValidator.isExpiryDateValid("12/25")
+CardNumberTextField(
+    onCardNumberChange = { number -> /* handle input */ },
+    onCardNumberValidChange = { isValid -> /* react to validation */ }
+)
 ```
 
-### Compose UI Components
-
+### Expiry Date Input
 ```kotlin
-@Composable
-fun PaymentForm() {
-    Column {
-        CardNumberTextField(
-            onCardNumberChange = { number -> /* handle input */ },
-            onCardNumberValidChange = { isValid -> /* react to validation */ }
-        )
+CardExpiryDateTextField(
+    onExpiryDateChange = { expiry -> /* handle input */ },
+    onExpiryDateValidChange = { isValid -> /* react to validation */ }
+)
+```
 
-        CardExpiryDateTextField(
-            onExpiryDateChange = { expiry -> /* handle input */ },
-            onExpiryDateValidChange = { isValid -> /* react to validation */ }
-        )
-
-        CardCvvTextField(
-            onCvvChange = { cvv -> /* handle input */ },
-            onCvvValidChange = { isValid -> /* react to validation */ }
-        )
-    }
-}
+### CVV Input
+```kotlin
+CardCvvTextField(
+    onCvvChange = { cvv -> /* handle input */ },
+    onCvvValidChange = { isValid -> /* react to validation */ }
+)
 ```
 
 ---
 
 ## 📚 Examples
 
-- Real-time validation feedback  
-- Automatic brand logo display  
+- Real-time error messages  
 - Smart expiry date formatting  
+- Auto focus navigation on completion  
 
 *(Add screenshots or gifs here to showcase the UI.)*
 
