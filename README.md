@@ -37,7 +37,7 @@ repositories {
 Then add the dependency:
 
 ```gradle
-implementation("com.github.moashrafff:cardvalidator-ui:<version>")
+implementation("com.github.moashrafff:bank-card-validation-ui:<version>")
 ```
 
 ---
