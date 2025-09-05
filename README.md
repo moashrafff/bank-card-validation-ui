@@ -47,24 +47,61 @@ implementation("com.github.moashrafff:bank-card-validation-ui:<version>")
 ### Card Number Input
 ```kotlin
 CardNumberTextField(
-    onCardNumberChange = { number -> /* handle input */ },
-    onCardNumberValidChange = { isValid -> /* react to validation */ }
+    modifier = Modifier.fillMaxWidth(),
+    invalidFormatErrorMessage = "Card number must contain digits only",
+    invalidCardNumberErrorMessage = "Invalid card number",
+    unknownCardBrandErrorMessage = "Unknown card brand",
+    textFieldLabel = "Card Number",
+    completeFocusDirection = FocusDirection.Next,
+    clearIcon = Icons.Default.Clear,
+    errorMessageFontSize = 12f,
+    onCardNumberChange = { number ->
+        println("Card number changed: $number")
+    },
+    onCardNumberValidChange = { isValid ->
+        println("Card number valid: $isValid")
+    }
 )
 ```
 
 ### Expiry Date Input
 ```kotlin
 CardExpiryDateTextField(
-    onExpiryDateChange = { expiry -> /* handle input */ },
-    onExpiryDateValidChange = { isValid -> /* react to validation */ }
+    modifier = Modifier.fillMaxWidth(),
+    invalidFormatErrorMessage = "Expiry must be digits only",
+    invalidMonthErrorMessage = "Invalid month",
+    expiredCardErrorMessage = "Card expired",
+    tooFarMessage = "Date too far in the future",
+    textFieldLabel = "Expiry Date",
+    completeFocusDirection = FocusDirection.Next,
+    clearIcon = Icons.Default.Clear,
+    errorMessageFontSize = 12f,
+    onExpiryDateChange = { expiry ->
+        println("Expiry changed: $expiry")
+    },
+    onExpiryDateValidChange = { isValid ->
+        println("Expiry valid: $isValid")
+    }
 )
 ```
 
 ### CVV Input
 ```kotlin
 CardCvvTextField(
-    onCvvChange = { cvv -> /* handle input */ },
-    onCvvValidChange = { isValid -> /* react to validation */ }
+    modifier = Modifier.fillMaxWidth(),
+    invalidFormatErrorMessage = "CVV must contain digits only",
+    invalidCvvLengthErrorMessage = "Invalid CVV length",
+    textFieldLabel = "CVV",
+    canCloseKeyBoardAfterValidation = true,
+    optionalCardNumber = "4111111111111111", // Helps validate CVV length by brand
+    clearIcon = Icons.Default.Clear,
+    errorMessageFontSize = 12f,
+    onCvvChange = { cvv ->
+        println("CVV changed: $cvv")
+    },
+    onCvvValidChange = { isValid ->
+        println("CVV valid: $isValid")
+    }
 )
 ```
 
