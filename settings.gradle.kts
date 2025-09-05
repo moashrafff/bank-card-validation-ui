@@ -1,6 +1,3 @@
-import org.gradle.kotlin.dsl.flatDir
-import org.gradle.kotlin.dsl.repositories
-
 pluginManagement {
     repositories {
         google {
@@ -23,10 +20,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://jitpack.io")
+        }
     }
 }
 
 rootProject.name = "Bank Card Validator"
 include(":app")
-include(":cardvalidationengine")
 include(":cardvalidator-ui")

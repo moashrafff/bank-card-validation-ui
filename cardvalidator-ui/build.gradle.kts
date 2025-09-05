@@ -79,5 +79,6 @@ dependencies {
     // Optional: Tooling for preview/debug
     debugImplementation(libs.androidx.ui.tooling)
 
-    api(project(":cardvalidationengine"))
+    implementation("com.github.moashrafff:bank-card-validation-engine:1.0.0")
+
 }

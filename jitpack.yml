@@ -1,5 +1,2 @@
 jdk:
   - openjdk17
-
-install:
-  - ./gradlew -Pgroup=io.github.moashrafff.bankCardValidator -Pversion=1.0.0 :cardvalidationengine:publishToMavenLocal :cardvalidator-ui:publishToMavenLocal -xlint -xtest
