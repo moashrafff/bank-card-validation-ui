@@ -1,7 +1,7 @@
 plugins {
     `java-library`
     alias(libs.plugins.jetbrains.kotlin.jvm)
-    `maven-publish`
+    id("maven-publish")
 }
 
 group = "com.bankcardvalidator"
@@ -28,4 +28,13 @@ publishing {
 
 dependencies {
     testImplementation(libs.junit)
+}
+publishing {
+    publications {
+        withType<MavenPublication> {
+            groupId = "com.bankcardvalidator"
+            artifactId = "cardvalidator-engine"
+            version = "1.0.0"
+        }
+    }
 }
