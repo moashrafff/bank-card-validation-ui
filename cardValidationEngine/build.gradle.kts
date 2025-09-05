@@ -4,7 +4,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.bankcardvalidator"
+group = "io.github.moashrafff.bankCardValidator"
 version = "1.0.0"
 
 java {
@@ -22,19 +22,11 @@ publishing {
     publications {
         create<MavenPublication>("release") {
             from(components["java"])
+            artifactId = "cardValidationEngine"
         }
     }
 }
 
 dependencies {
     testImplementation(libs.junit)
-}
-publishing {
-    publications {
-        withType<MavenPublication> {
-            groupId = "com.bankcardvalidator"
-            artifactId = "cardvalidator-engine"
-            version = "1.0.0"
-        }
-    }
 }
