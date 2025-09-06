@@ -115,7 +115,7 @@ CardCvvTextField(
 
 | :cardvalidator-ui               |
 |---------------------------------|
-| ![](./readme-assets/gifs/1.gif) |
+| ![card-validator-ui](https://github.com/user-attachments/assets/7f568333-4160-4601-a4ce-c53d77b67110) |
 
 ---
 
