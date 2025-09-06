@@ -115,7 +115,7 @@ CardCvvTextField(
 
 | :cardvalidator-ui               |
 |---------------------------------|
-| ![](./readme-assets/gifs/1.gif) |
+![WhatsApp Video 2025-09-06 at 2 35 28 PM](https://github.com/user-attachments/assets/79722816-2d6e-48ff-bdb8-ce1f8816e929)
 
 ---
 
